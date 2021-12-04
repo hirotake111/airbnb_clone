@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Home from ".";
+import Home from "../pages";
 
 it("should render Home", () => {
   expect.assertions(1);
