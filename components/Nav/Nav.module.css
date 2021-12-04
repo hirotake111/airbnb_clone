@@ -1,0 +1,9 @@
+.nav {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  background-color: #000;
+  color: #fff;
+  transition: 0.2s;
+}
