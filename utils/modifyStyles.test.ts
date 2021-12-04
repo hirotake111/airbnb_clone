@@ -11,8 +11,12 @@ describe("changeBgAndFont", () => {
       },
     } as any;
     changeBgAndFont(elm, true);
-    expect(elm).toEqual({ style: { backgroundColor: "#fff", color: "#000" } });
+    expect(elm).toEqual({
+      style: { backgroundColor: "#fff", color: "#000" },
+    });
     changeBgAndFont(elm, false);
-    expect(elm).toEqual({ style: { backgroundColor: "#000", color: "#fff" } });
+    expect(elm).toEqual({
+      style: { backgroundColor: "#000", color: "#fff" },
+    });
   });
 });
