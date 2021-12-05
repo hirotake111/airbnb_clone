@@ -3,7 +3,7 @@ import Nav from "./Nav";
 
 // mock custom hook
 const mockWindowHook = jest.fn();
-jest.mock("../../hooks/windowHook", () => ({
+jest.mock("../../../hooks/windowHook", () => ({
   useWindow: () => mockWindowHook(),
 }));
 

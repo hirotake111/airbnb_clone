@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import styles from "./RightMenu.module.css";
 
 export default function RightMenu() {
