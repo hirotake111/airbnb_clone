@@ -10,3 +10,12 @@
   color: #fff;
   transition: 0.2s;
 }
+
+.nav_scrolled {
+  background-color: #fff;
+  color: #000;
+}
+
+.logo_scrolled {
+  color: #fe395c;
+}
