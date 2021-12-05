@@ -21,5 +21,5 @@ export const windowSlice = createSlice({
 
 export const { scroll, unscroll } = windowSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectWindow = (state: RootState) => state.window;
+// // Other code such as selectors can use the imported `RootState` type
+// export const selectWindow = (state: RootState) => state.window;
