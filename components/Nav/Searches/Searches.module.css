@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+}
+
+.child {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px 16px 10px 16px;
+}

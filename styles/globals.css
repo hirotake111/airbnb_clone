@@ -15,3 +15,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+span {
+  font-size: 14px;
+}
