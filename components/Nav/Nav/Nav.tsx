@@ -13,7 +13,7 @@ export default function Nav() {
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
       <div className={styles.nav__side}>
         <Logo scrolled={scrolled} />
-        <RightMenu />
+        <RightMenu scrolled={scrolled} />
       </div>
       <div
         id="nav"

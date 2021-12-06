@@ -1,9 +1,16 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0 80px 0 80px;
 }
 
 .itemContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.items {
   display: flex;
   height: 80px;
   align-items: center;
@@ -14,4 +21,16 @@
   font-size: 16px;
   font-weight: 300;
   padding: 10px 16px 10px 16px;
+}
+
+.searchbarContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (width <= 1024px) {
+  .itemContainer {
+    justify-content: left;
+  }
 }

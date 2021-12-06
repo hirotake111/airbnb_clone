@@ -1,15 +1,26 @@
 import styles from "./RightMenu.module.css";
 
-export default function RightMenu() {
+interface Props {
+  scrolled: boolean;
+}
+
+export default function RightMenu({ scrolled }: Props) {
   return (
     <div className={styles.container}>
-      <span id="hostButton" className={styles.hostButton}>
+      <span
+        id="hostButton"
+        className={`${styles.hostButton} ${
+          scrolled ? styles.hostButton__scrolled : ""
+        }`}
+      >
         Become a Host
       </span>
       <div className={styles.langButton__container}>
         <button
           id="langButton"
-          className={styles.langButton}
+          className={`${styles.langButton} ${
+            scrolled ? styles.langButton__scrolled : null
+          }`}
           aria-label="Choose a language and currency"
         >
           <svg

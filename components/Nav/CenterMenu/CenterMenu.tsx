@@ -1,16 +1,23 @@
 import { ReactNode } from "react";
+import { useSearch } from "../../../hooks/searchHook";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./CenterMenu.module.css";
 
 export default function Centermenu() {
+  const { enabled } = useSearch();
+
   return (
     <div className={styles.container}>
       <div className={styles.itemContainer}>
-        <ChildItem>Places to stay</ChildItem>
-        <ChildItem>Experiences</ChildItem>
-        <ChildItem>Online experiences</ChildItem>
+        <div className={styles.items}>
+          <ChildItem>Places to stay</ChildItem>
+          <ChildItem>Experiences</ChildItem>
+          <ChildItem>Online experiences</ChildItem>
+        </div>
       </div>
-      <SearchBar />
+      <div className={styles.searchbarContainer}>
+        {enabled ? <SearchBar /> : null}
+      </div>
     </div>
   );
 }

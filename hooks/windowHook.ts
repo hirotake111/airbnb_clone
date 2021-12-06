@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { scroll, unscroll } from "../redux/windowSlice";
+import { makeBgWhite, makeBgBlack } from "../redux/windowSlice";
+import { enableSearch, disableSearch } from "../redux/searchSlice";
 
 export const useWindow = () => {
   const dispatch = useAppDispatch();
@@ -11,9 +12,11 @@ export const useWindow = () => {
     if (target) {
       const observer = new IntersectionObserver((entries) => {
         if (entries[0].boundingClientRect.y < 0) {
-          dispatch(scroll());
+          dispatch(makeBgWhite());
+          dispatch(disableSearch());
         } else {
-          dispatch(unscroll());
+          dispatch(makeBgBlack());
+          dispatch(enableSearch());
         }
       });
       observer.observe(target);

@@ -1,10 +1,8 @@
 .nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 80px;
   width: 100%;
-  padding: 0 80px 0 80px;
+  /* padding: 0 80px 0 80px; */
   position: fixed;
   background-color: #000;
   color: #fff;
@@ -30,6 +28,9 @@
 
 @media (width <= 1024px) {
   .nav {
+    justify-content: left;
+  }
+  .nav__side {
     padding: 0 40px 0 40px;
   }
 }
