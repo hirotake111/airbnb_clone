@@ -4,6 +4,7 @@
 
 ### TODOs
 
+- navbar should not change the color if not on top
 - update search form
 - add calendar
 - update hero
