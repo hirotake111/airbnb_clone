@@ -4,7 +4,8 @@
 
 ### TODOs
 
-- update navbar
+- update search form
+- add calendar
 - update hero
 - add subsequent compoennts
 

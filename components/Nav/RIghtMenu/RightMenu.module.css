@@ -1,12 +1,18 @@
 .container {
+  position: fixed;
+  right: 0;
   display: flex;
   align-items: center;
+  color: #fff;
+  height: 80px;
+  margin-right: 80px;
 }
 
 .hostButton {
   padding: 12px;
   cursor: pointer;
   border-radius: 22px;
+  -webkit-font-smoothing: antialised;
 }
 
 .hostButton:hover {
@@ -34,7 +40,7 @@
   color: #000;
 }
 
-.globe {
+.globeIcon {
   display: block;
   height: 16px;
   width: 16px;
@@ -51,6 +57,7 @@
   border-radius: 22px;
   padding: 5px 5px 5px 12px;
   background: #fff;
+  cursor: pointer;
 }
 
 .langButton__container {
@@ -78,4 +85,10 @@
   width: 30px;
   margin-left: 12px;
   color: #717171;
+}
+
+@media (width <= 1024px) {
+  .container {
+    margin-right: 40px;
+  }
 }

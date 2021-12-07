@@ -1,3 +1,23 @@
+.container {
+  position: fixed;
+  display: flex;
+  height: 80px;
+  color: #fff;
+  margin-left: 80px;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  cursor: pointer;
+}
+
 .logo_scrolled {
   color: #fe395c;
+}
+
+@media (width <= 1024px) {
+  .container {
+    margin-left: 40px;
+  }
 }

@@ -4,24 +4,30 @@ import Centermenu from "../CenterMenu/CenterMenu";
 
 import styles from "./Nav.module.css";
 import Logo from "../Logo/Logo";
+import { useAppSelector } from "../../../redux/store";
 
 export default function Nav() {
   const scrolled = useWindow();
+  const { enabled } = useAppSelector((state) => state.search);
 
   return (
     <>
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
-      <div className={styles.nav__side}>
-        <Logo scrolled={scrolled} />
-        <RightMenu scrolled={scrolled} />
-      </div>
       <div
         id="nav"
         className={`${styles.nav} ${scrolled ? styles.nav_scrolled : ""}`}
         aria-label="navigation"
       >
-        <Centermenu />
+        <div
+          className={`${styles.nav__center} ${
+            enabled ? "" : styles.nav__center_searchDisabled
+          }`}
+        >
+          <Centermenu />
+        </div>
       </div>
+      <Logo scrolled={scrolled} />
+      <RightMenu scrolled={scrolled} />
     </>
   );
 }
