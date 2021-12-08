@@ -10,7 +10,6 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     enableSearch: (state) => {
-      console.log("enableSearch()");
       state.enabled = true;
     },
     disableSearch: (state) => {

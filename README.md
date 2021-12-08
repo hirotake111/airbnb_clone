@@ -4,7 +4,8 @@
 
 ### TODOs
 
-- navbar should not change the color if not on top
+- test for hooks
+- theme state on redux to manage color palette
 - update search form
 - add calendar
 - update hero

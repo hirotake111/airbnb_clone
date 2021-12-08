@@ -12,5 +12,18 @@ export const useSearch = () => {
     dispatch(disableSearch());
   };
 
-  return { enabled, enable: enableSearch, disable: disableSearch };
+  return { enabled, enableSearch: enable, disableSearch: disable };
+};
+
+/**
+ * custom hook that disables search bar (index page)
+ */
+export const useDisableSearchOnIndex = () => {
+  const { enabled } = useAppSelector((state) => state.search);
+  const { scrolled } = useAppSelector((state) => state.window);
+  const dispatch = useAppDispatch();
+
+  return () => {
+    if (enabled && scrolled) dispatch(disableSearch());
+  };
 };
