@@ -1,21 +1,16 @@
-import { disableSearch, enableSearch } from "../../../redux/searchSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { useSearch } from "../../../hooks/searchHook";
+
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
-  const dispatch = useAppDispatch();
-  const { enabled } = useAppSelector((state) => state.search);
-
-  const handleClick = () => {
-    if (!enabled) dispatch(enableSearch());
-  };
+  const { enabled, enableSearch } = useSearch();
 
   return (
     <div
       className={`${styles.outline} ${
         enabled ? styles.outline_searchEnabled : null
       }`}
-      onClick={handleClick}
+      onClick={enableSearch}
     >
       <div aria-label="searchLabel" className={styles.label}>
         Start your search

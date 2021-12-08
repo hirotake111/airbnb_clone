@@ -1,7 +1,7 @@
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store, useAppDispatch, useAppSelector } from "./store";
-import { scroll, unscroll } from "./windowSlice";
+import { makeBgWhite, makeBgBlack } from "./windowSlice";
 
 const Component = () => {
   const { scrolled } = useAppSelector((state) => state.window);
@@ -11,7 +11,7 @@ const Component = () => {
     <>
       <span aria-label="state">{scrolled ? "scrolled" : "not scrolled"}</span>
       <button
-        onClick={() => dispatch(scrolled ? unscroll() : scroll())}
+        onClick={() => dispatch(scrolled ? makeBgBlack() : makeBgWhite())}
       ></button>
     </>
   );

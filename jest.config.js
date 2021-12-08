@@ -9,6 +9,7 @@ module.exports = {
     "!pages/_app.tsx",
     "!**/*.d.ts",
     "!**/node_modules/**",
+    "!components/**/__mocks__/*",
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)

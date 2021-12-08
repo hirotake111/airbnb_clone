@@ -51,7 +51,7 @@ describe("useWindow", () => {
     renderHook(useWindow);
     expect(mockDispatch).toHaveBeenCalledWith({
       payload: undefined,
-      type: "window/scroll",
+      type: "window/makeBgWhite",
     });
   });
 
@@ -65,7 +65,7 @@ describe("useWindow", () => {
     renderHook(useWindow);
     expect(mockDispatch).toHaveBeenCalledWith({
       payload: undefined,
-      type: "window/unscroll",
+      type: "window/makeBgBlack",
     });
   });
 

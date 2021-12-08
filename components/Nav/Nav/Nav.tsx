@@ -4,11 +4,11 @@ import Centermenu from "../CenterMenu/CenterMenu";
 
 import styles from "./Nav.module.css";
 import Logo from "../Logo/Logo";
-import { useAppSelector } from "../../../redux/store";
+import { useSearch } from "../../../hooks/searchHook";
 
 export default function Nav() {
   const scrolled = useWindow();
-  const { enabled } = useAppSelector((state) => state.search);
+  const { enabled } = useSearch();
 
   return (
     <>
