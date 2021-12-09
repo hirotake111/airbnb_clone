@@ -4,8 +4,6 @@
 
 ### TODOs
 
-- test for hooks
-- theme state on redux to manage color palette
 - update search form
 - add calendar
 - update hero
@@ -15,3 +13,5 @@
 # run dev server
 yarn dev
 ```
+
+https://a0.muscache.com/im/pictures/95fab018-afab-4a2d-bf80-775b1dd57acf.jpg?im_w=1440
