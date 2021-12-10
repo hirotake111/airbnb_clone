@@ -6,6 +6,7 @@
   color: #fff;
   height: 80px;
   margin-right: 80px;
+  z-index: 2;
 }
 
 .hostButton {

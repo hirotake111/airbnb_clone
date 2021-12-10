@@ -5,6 +5,7 @@
   color: #fff;
   margin-left: 80px;
   align-items: center;
+  z-index: 2;
 }
 
 .logo {

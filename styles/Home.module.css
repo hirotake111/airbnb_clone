@@ -3,8 +3,17 @@
   height: 100%;
   padding: 176px 80px 64px 80px;
   background-color: #000;
+  z-index: 1;
 }
-
+.navContainer {
+  z-index: 2;
+}
+.heroImageContaier {
+  z-index: 0;
+}
+.heroImage {
+  position: relative;
+}
 .hero {
   display: block;
   border-radius: 12px;
