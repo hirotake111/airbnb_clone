@@ -4,7 +4,6 @@
 
 ### TODOs
 
-- fix navbar styling
 - change navbar into reusable component
 - update search form
 - add calendar

@@ -16,26 +16,18 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.container} onClick={disableSearch}>
         <div className={styles.hero}>
-          <div className={styles.heroImageContainer}>
-            <Image
-              src="/hero.jpg"
-              width="1200"
-              height="600"
-              // layout="responsive"
-              alt="Hero image"
-              className={styles.heroImage}
-            />
-            {/* <img
-              src="/hero.jpg"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                position: "absolute",
-              }}
-            /> */}
-          </div>
-          <h1 className={styles.hero__title}>Not sure where to go? Perfect.</h1>
-          <div className={styles.hero__buttonContainer}>
+          <Image
+            // src="/hero.jpg"
+            src="/hero.webp"
+            width="1920"
+            height="960"
+            alt="Hero image"
+            layout="responsive"
+          />
+          <div className={styles.hero__titleButtonContainer}>
+            <h1 className={styles.hero__title}>
+              Not sure where to go? Perfect.
+            </h1>
             <button className={styles.hero__button}>
               <span className={styles.hero__buttonInnerText}>I'm flexible</span>
             </button>
