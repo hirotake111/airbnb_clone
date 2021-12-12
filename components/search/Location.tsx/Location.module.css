@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  padding: 16px 0 2px 0;
+  font-size: 12px;
+  height: 30;
+  /* background-color: chartreuse; */
+}
+
+.buttonContainer {
+  margin: 17px 0 24px 0;
+}
+
+.button__label {
+  color: #6f019c;
+  font-size: 18px;
+  font-weight: 600;
+}
