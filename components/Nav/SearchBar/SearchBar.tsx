@@ -8,7 +8,7 @@ import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
-  const [searchFocued, setSearchFocued] = useState(false);
+  const [searchFocused, setSearchFocued] = useState(false);
 
   const handleClick = () => {
     setSearchFocued((current) => !current);
@@ -40,7 +40,7 @@ export default function SearchBar() {
           <div
             className={[
               styles.search__guests,
-              searchFocued ? styles.search__guests_searchFocued : "",
+              searchFocused ? styles.search__guests_searchFocued : "",
             ].join(" ")}
           >
             <SearchItem
@@ -49,7 +49,7 @@ export default function SearchBar() {
               icon={
                 <SearchIcon
                   size="md"
-                  searchFocued={searchFocued}
+                  searchFocused={searchFocused}
                   onClick={handleClick}
                 />
               }

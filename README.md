@@ -7,7 +7,7 @@
 - update search form
 - add calendar
 - update hero
-- add subsequent compoennts
+- add subsequent components
 
 ```bash
 # run dev server

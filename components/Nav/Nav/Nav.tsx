@@ -15,12 +15,12 @@ export default function Nav() {
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
       <div
         id="nav"
+        aria-label="navigation"
         className={[
           styles.nav,
           scrolled ? styles.nav_scrolled : "",
           enabled ? styles.nav_searchEnabled : "",
         ].join(" ")}
-        aria-label="navigation"
       >
         <div
           className={[
