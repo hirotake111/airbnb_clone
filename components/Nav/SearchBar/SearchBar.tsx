@@ -1,26 +1,35 @@
+import { useState } from "react";
+
 import { useSearch } from "../../../hooks/searchHook";
 import SearchIcon from "../SearchIcon/SearchIcon";
-// import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
 
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
+  const [searchFocued, setSearchFocued] = useState(false);
+
+  const handleClick = () => {
+    setSearchFocued((current) => !current);
+  };
+
   return (
     <div
       className={`${styles.outline} ${
-        enabled ? styles.outline_searchEnabled : null
+        enabled ? styles.outline_searchEnabled : ""
       }`}
       onClick={enableSearch}
     >
       {enabled ? (
         <div className={styles.search__form}>
-          <SearchItem
-            label="Location"
-            placeholder="Where are you going?"
-            isTextForm
-          />
+          <div className={styles.search__location}>
+            <SearchItem
+              label="Location"
+              placeholder="Where are you going?"
+              isTextForm
+            />
+          </div>
           <div className={styles.search__divider}></div>
           <div className={styles.search__date}>
             <SearchItem label="Check in" placeholder="Add dates" />
@@ -28,11 +37,24 @@ export default function SearchBar() {
             <SearchItem label="Check Out" placeholder="Add dates" />
             <div className={styles.search__divider}></div>
           </div>
-          <SearchItem
-            label="Guests"
-            placeholder="Add guests"
-            icon={<SearchIcon size="md" />}
-          />
+          <div
+            className={[
+              styles.search__guests,
+              searchFocued ? styles.search__guests_searchFocued : "",
+            ].join(" ")}
+          >
+            <SearchItem
+              label="Guests"
+              placeholder="Add guests"
+              icon={
+                <SearchIcon
+                  size="md"
+                  searchFocued={searchFocued}
+                  onClick={handleClick}
+                />
+              }
+            />
+          </div>
         </div>
       ) : (
         <>

@@ -27,6 +27,7 @@
   background-color: rgb(255 56 92);
   color: #fff;
   padding: 16px;
+  transition: 0.2s;
 }
 
 .outline_sm {
@@ -41,7 +42,7 @@
   border-radius: 48px;
 }
 
-.outline_searchEnabled {
+.outline_searchFocuced {
   width: 111.75px;
   background-color: #e11b5f;
 }
