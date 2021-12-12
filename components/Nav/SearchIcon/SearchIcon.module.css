@@ -1,0 +1,53 @@
+.icon {
+  display: block;
+  fill: none;
+  stroke: currentcolor;
+  overflow: visible;
+  color: #fff;
+  cursor: pointer;
+}
+
+.icon_sm {
+  width: 12px;
+  height: 12px;
+  stroke-width: 5.33333;
+}
+
+.icon_md {
+  width: 16px;
+  height: 16px;
+  stroke-width: 4;
+}
+
+.outlilne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 50%; */
+  background-color: rgb(255 56 92);
+  color: #fff;
+  padding: 16px;
+}
+
+.outline_sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+}
+
+.outline_md {
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+}
+
+.outline_searchEnabled {
+  width: 111.75px;
+  background-color: #e11b5f;
+}
+
+.buttonLabel {
+  padding: 0 4px 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+}

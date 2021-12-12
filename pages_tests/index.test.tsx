@@ -1,8 +1,6 @@
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
 
 import Home from "../pages";
-import { store } from "../redux/store";
 
 // mock hook
 const mockDisableSearch = jest.fn();

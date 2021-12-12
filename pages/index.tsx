@@ -22,6 +22,7 @@ const Home: NextPage = () => {
             height="960"
             alt="Hero image"
             layout="responsive"
+            priority={true}
           />
           <div className={styles.hero__titleButtonContainer}>
             <h1 aria-label="hero title" className={styles.hero__title}>
