@@ -15,13 +15,19 @@ export default function Nav() {
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
       <div
         id="nav"
-        className={`${styles.nav} ${scrolled ? styles.nav_scrolled : ""}`}
+        className={[
+          styles.nav,
+          scrolled ? styles.nav_scrolled : "",
+          enabled ? styles.nav_searchEnabled : "",
+        ].join(" ")}
         aria-label="navigation"
       >
         <div
-          className={`${styles.nav__center} ${
-            enabled ? "" : styles.nav__center_searchDisabled
-          }`}
+          className={[
+            styles.nav__center,
+            enabled ? "" : styles.nav__center_searchDisabled,
+            scrolled ? styles.nav__center_scrolled : "",
+          ].join(" ")}
         >
           <Centermenu />
         </div>

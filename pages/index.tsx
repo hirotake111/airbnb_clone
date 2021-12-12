@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <div className={styles.navContainer}>
         <Nav />
       </div>
-      <div className={styles.container} onClick={disableSearch}>
+      <div className={styles.main} onClick={disableSearch}>
         <div className={styles.hero}>
           <Image
             src="/hero.webp"

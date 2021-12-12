@@ -1,9 +1,8 @@
 .nav {
   display: flex;
-  min-height: 80px;
+  height: 80px;
   width: 100%;
   position: fixed;
-  background-color: #000;
   color: #fff;
   transition: 0.2s;
   z-index: 1;
@@ -12,6 +11,10 @@
 .nav_scrolled {
   background-color: #fff;
   color: #000;
+}
+
+.nav_searchEnabled {
+  height: 180px;
 }
 
 .nav__center {
@@ -25,6 +28,10 @@
 
 .nav__center_searchDisabled {
   top: -60px;
+}
+
+.nav__center_scrolled {
+  background-color: #fff;
 }
 
 @media (width <= 1024px) {

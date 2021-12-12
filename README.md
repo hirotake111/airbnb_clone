@@ -4,7 +4,6 @@
 
 ### TODOs
 
-- change navbar into reusable component
 - update search form
 - add calendar
 - update hero
