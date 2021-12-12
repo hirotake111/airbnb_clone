@@ -1,6 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { enableSearch, disableSearch } from "../redux/searchSlice";
+import {
+  enableSearch,
+  disableSearch,
+  changeSearchFocus,
+} from "../redux/searchSlice";
 import { makeBgBlack, makeBgWhite } from "../redux/windowSlice";
+import { useDispatch } from "react-redux";
+import { SearchFocusedTypes } from "../types/types";
 
 export const useSearch = () => {
   const dispatch = useAppDispatch();
@@ -26,4 +32,15 @@ export const useSearch = () => {
     disableSearch: disable,
     toggleScrolled,
   };
+};
+
+export const useSearchFocus = () => {
+  const dispatch = useDispatch();
+  const { focused } = useAppSelector((state) => state.search);
+
+  const change = (item: SearchFocusedTypes) => {
+    dispatch(changeSearchFocus(item));
+  };
+
+  return { changeSearchFocus: change, focused };
 };

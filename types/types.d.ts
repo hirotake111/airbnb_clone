@@ -6,7 +6,15 @@ export interface WindowState {
 
 export interface SearchState {
   enabled: boolean;
+  focused: SearchFocusedTypes;
 }
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export type SearchFocusedTypes =
+  | "location"
+  | "checkIn"
+  | "checkOut"
+  | "guests"
+  | null;

@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { SearchState } from "../types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SearchFocusedTypes, SearchState } from "../types/types";
 
 const initialState: SearchState = {
   enabled: true,
+  focused: null,
 };
 
 export const searchSlice = createSlice({
@@ -15,7 +16,11 @@ export const searchSlice = createSlice({
     disableSearch: (state) => {
       state.enabled = false;
     },
+    changeSearchFocus: (state, action: PayloadAction<SearchFocusedTypes>) => {
+      state.focused = action.payload;
+    },
   },
 });
 
-export const { enableSearch, disableSearch } = searchSlice.actions;
+export const { enableSearch, disableSearch, changeSearchFocus } =
+  searchSlice.actions;
