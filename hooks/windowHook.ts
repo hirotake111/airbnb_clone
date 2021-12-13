@@ -12,9 +12,11 @@ export const useWindow = () => {
     if (target) {
       const observer = new IntersectionObserver((entries) => {
         if (entries[0].boundingClientRect.y < 0) {
+          // window is not on top, scrolled
           dispatch(makeBgWhite());
           dispatch(disableSearch());
         } else {
+          // window is on top, not scrolled
           dispatch(makeBgBlack());
           dispatch(enableSearch());
         }

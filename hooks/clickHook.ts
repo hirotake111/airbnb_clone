@@ -1,13 +1,26 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useAppSelector } from "../redux/store";
 
 export const useOnclickOutside = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const { scrolled } = useAppSelector((state) => state.window);
+
   const [opened, setEnabled] = useState(false);
+
+  /**
+   * set value true and add event listener
+   */
   const open = () => {
-    // set value to true
     setEnabled(true);
-    // add event listener
     document.addEventListener("mousedown", callback);
+  };
+
+  /**
+   * set value false and remove event listener
+   */
+  const close = () => {
+    setEnabled(false);
+    document.removeEventListener("mousedown", callback);
   };
 
   const callback = (e: MouseEvent) => {
@@ -15,9 +28,12 @@ export const useOnclickOutside = () => {
     // if user clicked inside of div element, do nothing
     if (ref.current.contains(e.target as Node)) return;
     // else, close it and remove event listener
-    setEnabled(false);
-    document.removeEventListener("mousedown", callback);
+    close();
   };
+
+  useEffect(() => {
+    if (scrolled) close();
+  }, [scrolled]);
 
   return { ref, open, opened };
 };
