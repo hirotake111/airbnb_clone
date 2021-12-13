@@ -73,21 +73,23 @@
   flex-direction: column;
   flex: 1 0 0%;
   --webkit-flex: 1 0 0%;
+  height: 100%;
 }
 
 .search__date {
   display: flex;
   align-items: center;
   height: 100%;
-  flex: 2 0 0%;
-  --webkit-flex: 2 0 0%;
+  flex: 1.5 0 0%;
+  --webkit-flex: 1.5 0 0%;
 }
 
 .search__guests {
   display: flex;
-  flex: 1 0 0%;
+  flex: 1.5 0 0%;
   --webkit-flex: 1 0 0%;
   transition: 0.2s;
+  height: 100%;
 }
 
 .search__guests_searchFocued {

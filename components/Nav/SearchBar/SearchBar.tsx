@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useSearch } from "../../../hooks/searchHook";
 import SearchModal from "../../search/SearchModal/SearchModal";
@@ -6,14 +6,20 @@ import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
 import Location from "../../search/Location.tsx/Location";
 import styles from "./SearchBar.module.css";
+import { useOnclickOutside } from "../../../hooks/clickHook";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
-  const [searchFocused, setSearchFocued] = useState(false);
+  const location = useOnclickOutside();
+  const checkIn = useOnclickOutside();
+  const checkOut = useOnclickOutside();
+  const guests = useOnclickOutside();
 
-  const handleClick = () => {
-    setSearchFocued((current) => !current);
-  };
+  const searchFocused = useMemo(() => {
+    return (
+      location.opened || checkIn.opened || checkOut.opened || guests.opened
+    );
+  }, [location.opened, checkIn.opened, checkOut.opened, guests.opened]);
 
   return (
     <div className={styles.container}>
@@ -30,31 +36,35 @@ export default function SearchBar() {
                 label="Location"
                 placeholder="Where are you going?"
                 isTextForm
+                onClick={location.open}
               />
             </div>
             <Divider />
             <div className={styles.search__date}>
-              <SearchItem label="Check in" placeholder="Add dates" />
+              <SearchItem
+                label="Check in"
+                placeholder="Add dates"
+                onClick={checkIn.open}
+              />
               <Divider />
-              <SearchItem label="Check Out" placeholder="Add dates" />
+              <SearchItem
+                label="Check Out"
+                placeholder="Add dates"
+                onClick={checkOut.open}
+              />
               <Divider />
             </div>
             <div
               className={[
                 styles.search__guests,
-                searchFocused ? styles.search__guests_searchFocued : "",
+                location.opened ? styles.search__guests_searchFocued : "",
               ].join(" ")}
             >
               <SearchItem
                 label="Guests"
                 placeholder="Add guests"
-                icon={
-                  <SearchIcon
-                    size="md"
-                    searchFocused={searchFocused}
-                    onClick={handleClick}
-                  />
-                }
+                onClick={guests.open}
+                icon={<SearchIcon size="md" searchFocused={searchFocused} />}
               />
             </div>
           </div>
@@ -70,10 +80,23 @@ export default function SearchBar() {
           </>
         )}
       </div>
-      {/** search menu modal */}
+      {/** location menu modal */}
       <div style={{ marginTop: "12px" }}>
-        <SearchModal width={500}>
+        <SearchModal
+          opened={location.opened}
+          reference={location.ref}
+          width={500}
+        >
           <Location />
+        </SearchModal>
+        <SearchModal opened={checkIn.opened} reference={checkIn.ref}>
+          <div>check in</div>
+        </SearchModal>
+        <SearchModal opened={checkOut.opened} reference={checkOut.ref}>
+          <div>check out</div>
+        </SearchModal>
+        <SearchModal opened={guests.opened} reference={guests.ref} width={500}>
+          <div>guests</div>
         </SearchModal>
       </div>
     </div>

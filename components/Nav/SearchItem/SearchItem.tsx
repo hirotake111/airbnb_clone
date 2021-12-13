@@ -6,6 +6,7 @@ interface Props {
   placeholder: string;
   isTextForm?: boolean;
   icon?: ReactNode;
+  onClick?: () => void;
 }
 
 export default function SearchItem({
@@ -13,10 +14,11 @@ export default function SearchItem({
   placeholder,
   isTextForm,
   icon,
+  onClick,
 }: Props) {
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} onClick={onClick}>
         <div className={styles.hContainer}>
           <div className={styles.vContainer}>
             <span className={styles.label}>{label}</span>
