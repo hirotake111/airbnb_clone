@@ -38,3 +38,18 @@ it("should render shrinked search button if enabled is false", () => {
   const { getByLabelText } = render(<SearchBar />);
   expect(getByLabelText("searchLabel").textContent).toBe("Start your search");
 });
+
+test("search item 'guests' has a class search__guests_searchFocused", () => {
+  expect.assertions(1);
+  mockUseSearch.mockReturnValue({
+    enabled: true,
+    enableSearch: () => {},
+  });
+  mockUseOnclickOutside.mockReturnValue({
+    opened: true,
+  });
+  const { container } = render(<SearchBar />);
+  expect(
+    container.getElementsByClassName("search__guests_searchFocused").length
+  ).toBe(1);
+});

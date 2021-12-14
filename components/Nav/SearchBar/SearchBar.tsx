@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 
 import { useSearch } from "../../../hooks/searchHook";
+import { useOnclickOutside } from "../../../hooks/clickHook";
+
 import SearchModal from "../../search/SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
 import Location from "../../search/Location.tsx/Location";
 import styles from "./SearchBar.module.css";
-import { useOnclickOutside } from "../../../hooks/clickHook";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
@@ -55,9 +56,10 @@ export default function SearchBar() {
               <Divider />
             </div>
             <div
+              aria-label="guests item container"
               className={[
                 styles.search__guests,
-                location.opened ? styles.search__guests_searchFocued : "",
+                searchFocused ? styles.search__guests_searchFocused : "",
               ].join(" ")}
             >
               <SearchItem

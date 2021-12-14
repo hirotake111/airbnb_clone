@@ -25,11 +25,21 @@ it("should render navbar", () => {
   expect(getByLabelText("navigation")).toBeTruthy();
 });
 
-it("should add extra class if hook returns true", () => {
+it("should add extra class if search hook returns true", () => {
+  expect.assertions(1);
+  mockWindowHook.mockReturnValue(false);
+  mockSearchHook.mockReturnValue({
+    enabled: true,
+  });
+  const { container } = render(<WrappedComponent />);
+  expect(container.getElementsByClassName("nav_searchEnabled").length).toBe(1);
+});
+
+it("should add extra class if window hook returns true", () => {
   expect.assertions(1);
   mockWindowHook.mockReturnValue(true);
   mockSearchHook.mockReturnValue({
-    enabled: true,
+    enabled: false,
   });
   const { container } = render(<WrappedComponent />);
   expect(container.getElementsByClassName("nav_scrolled").length).toBe(1);
