@@ -5,21 +5,36 @@ import SearchBar from "./SearchBar";
 jest.mock("../SearchItem/SearchItem");
 
 // mock hooks
-const mockEnableSearch = jest.fn();
+const mockUseSearch = jest.fn();
 jest.mock("../../../hooks/searchHook", () => ({
-  useSearch: () => ({
-    enabled: true,
-    enableSearch: () => mockEnableSearch(),
-  }),
+  useSearch: () => mockUseSearch(),
 }));
 const mockUseOnclickOutside = jest.fn();
-mockUseOnclickOutside.mockReturnValue({ open: jest.fn() });
+mockUseOnclickOutside.mockReturnValue({
+  open: jest.fn(),
+});
 jest.mock("../../../hooks/clickHook", () => ({
   useOnclickOutside: () => mockUseOnclickOutside(),
 }));
 
 it("should render search bar", () => {
   expect.assertions(1);
-  const { container } = render(<SearchBar />);
-  expect(container.firstChild).toBeTruthy();
+  mockUseSearch.mockReturnValue({
+    enabled: true,
+    enableSearch: () => {},
+  });
+  const { getByLabelText } = render(<SearchBar />);
+  expect(getByLabelText("location label").textContent).toBe(
+    "GO ANYWHERE, ANYTIME"
+  );
+});
+
+it("should render shrinked search button if enabled is false", () => {
+  expect.assertions(1);
+  mockUseSearch.mockReturnValue({
+    enabled: false,
+    enableSearch: () => {},
+  });
+  const { getByLabelText } = render(<SearchBar />);
+  expect(getByLabelText("searchLabel").textContent).toBe("Start your search");
 });
