@@ -12,6 +12,7 @@ jest.mock("../../../hooks/searchHook", () => ({
   useSearch: () => mockSearchHook(),
 }));
 
+jest.mock("../CenterMenu/CenterMenu");
 const WrappedComponent = () => <Nav />;
 
 it("should render navbar", () => {

@@ -39,3 +39,9 @@
     justify-content: left;
   }
 }
+
+@media (width <= 768px) {
+  .nav {
+    display: none;
+  }
+}

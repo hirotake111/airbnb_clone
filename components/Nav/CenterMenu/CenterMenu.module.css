@@ -32,5 +32,6 @@
 @media (width <= 1024px) {
   .itemContainer {
     justify-content: left;
+    padding-left: 80px;
   }
 }

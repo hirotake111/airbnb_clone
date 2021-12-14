@@ -24,15 +24,22 @@ export default function SearchItem({
             <span className={styles.label}>{label}</span>
             {isTextForm ? (
               <input
+                aria-label="search input"
                 type="text"
                 className={styles.placeholder}
                 placeholder={placeholder}
               />
             ) : (
-              <span className={styles.placeholder}>{placeholder}</span>
+              <span aria-label="search text" className={styles.placeholder}>
+                {placeholder}
+              </span>
             )}
           </div>
-          {icon ? <div className={styles.iconContainer}>{icon}</div> : null}
+          {icon ? (
+            <div aria-label="search icon" className={styles.iconContainer}>
+              {icon}
+            </div>
+          ) : null}
         </div>
       </div>
     </>

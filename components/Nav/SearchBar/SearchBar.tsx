@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { useSearch } from "../../../hooks/searchHook";
 import SearchModal from "../../search/SearchModal/SearchModal";
