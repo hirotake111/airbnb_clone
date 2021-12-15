@@ -5,6 +5,7 @@ import { useSearch } from "../hooks/searchHook";
 import Nav from "../components/Nav/Nav/Nav";
 
 import styles from "../styles/Home.module.css";
+import GiftCard from "../components/giftcard/GiftCard/GiftCard";
 
 const Home: NextPage = () => {
   const { disableSearch } = useSearch();
@@ -35,6 +36,7 @@ const Home: NextPage = () => {
             </button>
           </div>
         </div>
+        <GiftCard />
         <span style={{ height: "200vh" }}>Index page</span>
       </div>
     </>
