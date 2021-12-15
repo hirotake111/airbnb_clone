@@ -16,24 +16,26 @@ const Home: NextPage = () => {
         <Nav />
       </div>
       <div className={styles.main} onClick={disableSearch}>
-        <div className={styles.hero}>
-          <Image
-            src="/hero.webp"
-            width="1920"
-            height="960"
-            alt="Hero image"
-            layout="responsive"
-            priority={true}
-          />
-          <div className={styles.hero__titleButtonContainer}>
-            <h1 aria-label="hero title" className={styles.hero__title}>
-              Not sure where to go? Perfect.
-            </h1>
-            <button className={styles.hero__button}>
-              <span className={styles.hero__buttonInnerText}>
-                I&apos;m flexible
-              </span>
-            </button>
+        <div className={styles.hero__container}>
+          <div className={styles.hero}>
+            <Image
+              src="/hero.webp"
+              width="1920"
+              height="960"
+              alt="Hero image"
+              layout="responsive"
+              priority={true}
+            />
+            <div className={styles.hero__titleButtonContainer}>
+              <h1 aria-label="hero title" className={styles.hero__title}>
+                Not sure where to go? Perfect.
+              </h1>
+              <button className={styles.hero__button}>
+                <span className={styles.hero__buttonInnerText}>
+                  I&apos;m flexible
+                </span>
+              </button>
+            </div>
           </div>
         </div>
         <GiftCard />
