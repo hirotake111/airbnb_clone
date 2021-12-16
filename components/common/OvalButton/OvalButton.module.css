@@ -6,7 +6,7 @@
   padding: 8px 24px 8px 24px;
   border-radius: 32px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-  width: 386px;
+  min-width: 386px;
   height: 58px;
   cursor: pointer;
 }

@@ -12,11 +12,10 @@ jest.mock("../hooks/searchHook", () => ({
 
 // mock components
 jest.mock("../components/Nav/Nav/Nav");
+jest.mock("../components/hero/Hero");
 
 it("should render Home", () => {
   expect.assertions(1);
   const { getByLabelText } = render(<Home />);
-  expect(getByLabelText("hero title").textContent).toBe(
-    "Not sure where to go? Perfect."
-  );
+  expect(getByLabelText("main component")).toBeTruthy();
 });

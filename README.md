@@ -4,9 +4,8 @@
 
 ### TODOs
 
-- update search form
 - add calendar
-- update hero
+- update search form
 - add subsequent components
 
 ```bash
