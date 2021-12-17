@@ -3,6 +3,8 @@
   display: block;
   border-radius: 12px;
   overflow: hidden;
+  /* width: calc(min(1760px, 100%) - 160px); */
+  width: min(100%, 1600px);
 }
 
 .hero__titleButtonContainer {
@@ -13,6 +15,7 @@
   align-items: center;
   bottom: 0;
   padding-bottom: 64px;
+  z-index: 1;
 }
 
 .hero__title {

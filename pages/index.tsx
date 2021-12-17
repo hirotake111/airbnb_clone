@@ -6,6 +6,7 @@ import Nav from "../components/Nav/Nav/Nav";
 import styles from "../styles/Home.module.css";
 import GiftCard from "../components/giftcard/GiftCard/GiftCard";
 import Hero from "../components/hero/Hero";
+import NextTrip from "../components/nextTrip/NextTrip";
 
 const Home: NextPage = () => {
   const { disableSearch } = useSearch();
@@ -24,6 +25,9 @@ const Home: NextPage = () => {
           <Hero />
         </div>
         <GiftCard />
+        <div className={styles.nextTrip__container}>
+          <NextTrip />
+        </div>
         <span style={{ height: "200vh" }}>Index page</span>
       </div>
     </>

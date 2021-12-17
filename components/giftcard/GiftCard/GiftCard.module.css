@@ -60,3 +60,19 @@
   font-size: 95px;
   font-weight: 600;
 }
+
+@media (width <= 1024px) {
+  .container {
+    margin: 0 40px 0 40px;
+  }
+
+  .labels__productName {
+    font-size: 74px;
+  }
+}
+
+@media (width <= 900px) {
+  .labels__productName {
+    font-size: 49px;
+  }
+}
