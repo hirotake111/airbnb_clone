@@ -27,8 +27,8 @@
 }
 
 .hero__button {
-  width: 157.442px;
-  height: 52px;
+  /* min-width: 157.442px; */
+  /* height: 52px; */
   border-radius: 32px;
   padding: 16px 32px 16px 32px;
   border: 0;
@@ -37,8 +37,8 @@
 .hero__buttonInnerText {
   cursor: pointer;
   text-align: center;
-  font-size: 18px !important;
-  font-weight: 800 !important;
+  font-size: 18px;
+  font-weight: 800;
   -webkit-text-fill-color: transparent;
   background: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);
   background-clip: text !important;
@@ -69,5 +69,17 @@
     font-size: 24px;
     width: 80%;
     text-align: center;
+  }
+
+  .hero__titleButtonContainer {
+    padding-bottom: 40px;
+  }
+
+  .hero__button {
+    padding: 14px 24px;
+  }
+  .hero__buttonInnerText {
+    font-size: 16px;
+    font-weight: 600;
   }
 }
