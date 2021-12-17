@@ -1,4 +1,3 @@
-import SearchIcon from "../../Nav/SearchIcon/SearchIcon";
 import styles from "./MobileSearchBar.module.css";
 
 export default function MobileSearchBar() {

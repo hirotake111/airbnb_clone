@@ -46,8 +46,28 @@
   overflow: clip;
 }
 
+.imageContainer_mobile {
+  display: none;
+}
+
 @media (width <= 1024px) {
   .hero {
     border-radius: 0;
+  }
+}
+
+@media (width < 800px) {
+  .imageContainer {
+    display: none;
+  }
+
+  .imageContainer_mobile {
+    display: block;
+  }
+
+  .hero__title {
+    font-size: 24px;
+    width: 80%;
+    text-align: center;
   }
 }

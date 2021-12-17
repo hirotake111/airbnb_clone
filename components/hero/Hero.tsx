@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import MobileImage from "../../public/hero_mobile.jpg";
+
 import styles from "./Hero.module.css";
 export default function Hero() {
   return (
@@ -14,15 +16,22 @@ export default function Hero() {
           </span>
         </button>
       </div>
-      <Image
-        aria-label="hero image"
-        src="/hero.webp"
-        width="1920"
-        height="960"
-        alt="Hero image"
-        layout="responsive"
-        priority={true}
-      />
+      {/** image for mobile device */}
+      <div className={styles.imageContainer_mobile}>
+        <Image aria-label="hero mobile image" src={MobileImage} />
+      </div>
+      {/** image for other device */}
+      <div className={styles.imageContainer}>
+        <Image
+          aria-label="hero image"
+          src="/hero.webp"
+          width="1920"
+          height="960"
+          alt="Hero image"
+          layout="responsive"
+          priority={true}
+        />
+      </div>
     </div>
   );
 }

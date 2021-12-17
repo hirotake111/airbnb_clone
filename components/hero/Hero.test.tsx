@@ -1,11 +1,19 @@
 import { render } from "@testing-library/react";
 import Hero from "./Hero";
 
+jest.mock(
+  "next/image",
+  () =>
+    function Image({ src, alt }: { src: string; alt: string }) {
+      return <img src={src} alt={alt} />;
+    }
+);
+
 it("should display hero component", () => {
   expect.assertions(2);
-  const { getByLabelText } = render(<Hero />);
+  const { getByLabelText, container } = render(<Hero />);
   expect(getByLabelText("hero title").textContent).toBe(
     "Not sure where to go? Perfect."
   );
-  expect(getByLabelText("hero image").tagName).toBe("IMG");
+  expect(container.getElementsByTagName("img").length).toBe(2);
 });
