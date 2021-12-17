@@ -1,10 +1,11 @@
 import { useWindow } from "../../../hooks/windowHook";
+import { useSearch } from "../../../hooks/searchHook";
 import RightMenu from "../RIghtMenu/RightMenu";
 import Centermenu from "../CenterMenu/CenterMenu";
+import MobileSearchBar from "../../search/MoblieSearchBar/MoblieSearchBar";
+import Logo from "../Logo/Logo";
 
 import styles from "./Nav.module.css";
-import Logo from "../Logo/Logo";
-import { useSearch } from "../../../hooks/searchHook";
 
 export default function Nav() {
   const scrolled = useWindow();
@@ -13,6 +14,13 @@ export default function Nav() {
   return (
     <>
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
+      <Logo scrolled={scrolled} />
+      <RightMenu scrolled={scrolled} />
+      {/** mobile navbar */}
+      <div className={styles.nav__mobile}>
+        <MobileSearchBar />
+      </div>
+      {/** normal vanbar */}
       <div
         id="nav"
         aria-label="navigation"
@@ -32,8 +40,6 @@ export default function Nav() {
           <Centermenu />
         </div>
       </div>
-      <Logo scrolled={scrolled} />
-      <RightMenu scrolled={scrolled} />
     </>
   );
 }

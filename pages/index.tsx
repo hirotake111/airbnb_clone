@@ -25,10 +25,10 @@ const Home: NextPage = () => {
           <Hero />
         </div>
         <GiftCard />
-        <div className={styles.nextTrip__container}>
+        {/* <div className={styles.nextTrip__container}>
           <NextTrip />
         </div>
-        <span style={{ height: "200vh" }}>Index page</span>
+        <span style={{ height: "200vh" }}>Index page</span> */}
       </div>
     </>
   );

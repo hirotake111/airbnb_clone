@@ -4,6 +4,7 @@
   width: 100%;
   position: fixed;
   color: #fff;
+  transition-property: height;
   transition: 0.2s;
   z-index: 1;
 }
@@ -35,6 +36,14 @@
   background-color: #fff;
 }
 
+.nav__mobile {
+  display: none;
+  width: 100%;
+  height: 80px;
+  padding: 16px 24px;
+  background-color: aqua;
+}
+
 @media (width <= 1024px) {
   .nav {
     justify-content: left;
@@ -44,5 +53,9 @@
 @media (width <= 768px) {
   .nav {
     display: none;
+  }
+
+  .nav__mobile {
+    display: block;
   }
 }

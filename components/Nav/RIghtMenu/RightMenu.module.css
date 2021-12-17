@@ -93,3 +93,9 @@
     margin-right: 40px;
   }
 }
+
+@media (width <= 768px) {
+  .container {
+    display: none;
+  }
+}
