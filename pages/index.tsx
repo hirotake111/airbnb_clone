@@ -14,7 +14,12 @@ const Home: NextPage = () => {
   return (
     <>
       <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
-      <div className={styles.navContainer}>
+      <div
+        className={[
+          styles.navContainer,
+          scrolled ? styles.navContainer_scrolled : "",
+        ].join(" ")}
+      >
         <Nav />
       </div>
       <div
