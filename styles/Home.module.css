@@ -23,6 +23,17 @@
   background-color: #000;
 }
 
+.mobileMenu {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  border-top: 1px solid #ebebeb;
+  background-color: #fff;
+  z-index: 1;
+}
+
 @media (width <= 1024px) {
   .container {
     padding: 176px 0 64px 0;
@@ -37,7 +48,12 @@
   .main {
     padding: 0;
   }
+
   .hero__container {
     padding: 0;
+  }
+
+  .mobileMenu {
+    display: block;
   }
 }

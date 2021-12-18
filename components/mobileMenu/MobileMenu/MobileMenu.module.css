@@ -1,0 +1,46 @@
+.nav {
+  display: flex;
+  height: 100%;
+  color: rgb(34, 34, 34);
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.icon {
+  color: rgb(176, 176, 176);
+  margin-bottom: 2px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgb(113, 113, 113);
+}
+
+.label_highlighted {
+  color: #000;
+}
+
+.wishlists {
+  display: block;
+  fill: none;
+  height: 24px;
+  width: 24px;
+  stroke: currentcolor;
+  stroke-width: 2.66667;
+  overflow: visible;
+}
+
+.login {
+  display: block;
+  height: 24px;
+  width: 24px;
+  fill: currentcolor;
+}
