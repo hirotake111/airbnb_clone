@@ -13,7 +13,7 @@ jest.mock("../hooks/searchHook", () => ({
 // mock components
 jest.mock("../components/Nav/Nav/Nav");
 jest.mock("../components/hero/Hero");
-
+jest.mock("../components/giftcard/GiftCard/GiftCard");
 it("should render Home", () => {
   expect.assertions(1);
   const { getByLabelText } = render(<Home />);

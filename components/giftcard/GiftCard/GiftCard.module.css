@@ -56,9 +56,15 @@
   font-size: 19px;
   font-weight: 600;
 }
+
 .labels__productName {
   font-size: 95px;
   font-weight: 600;
+  text-align: center;
+}
+
+.mobileImage {
+  display: none;
 }
 
 @media (width <= 1024px) {
@@ -74,5 +80,46 @@
 @media (width <= 900px) {
   .labels__productName {
     font-size: 49px;
+  }
+}
+
+@media (width < 800px) {
+  .container {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0 24px 0 24px;
+    background-color: #ebebeb;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .labels {
+    position: absolute;
+    width: 100%;
+    /* z-index: 1; */
+    /* background-color: aqua; */
+  }
+
+  .labels__container {
+    justify-content: end;
+    padding: 30px;
+  }
+
+  .labels__subText {
+    font-size: 16px;
+    padding-bottom: 12px;
+  }
+
+  .labels__productName {
+    font-size: 39px;
+    padding-bottom: 24px;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
   }
 }
