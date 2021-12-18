@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppSelector } from "../redux/store";
+import { disableSearch } from "../redux/searchSlice";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 
 export const useOnclickOutside = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
   const { scrolled } = useAppSelector((state) => state.window);
+  const { enabled } = useAppSelector((state) => state.search);
 
   const [opened, setEnabled] = useState(false);
 
@@ -21,6 +24,8 @@ export const useOnclickOutside = () => {
   const close = () => {
     setEnabled(false);
     document.removeEventListener("mousedown", callback);
+    // if scrolled, disable search menu
+    if (scrolled) dispatch(disableSearch());
   };
 
   const callback = (e: MouseEvent) => {
@@ -35,5 +40,5 @@ export const useOnclickOutside = () => {
     if (scrolled) close();
   }, [scrolled]);
 
-  return { ref, open, opened };
+  return { ref, open, close, opened, enabled };
 };
