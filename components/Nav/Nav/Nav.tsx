@@ -13,7 +13,6 @@ export default function Nav() {
 
   return (
     <>
-      <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
       <Logo scrolled={scrolled} />
       <RightMenu scrolled={scrolled} />
       {/** mobile navbar */}

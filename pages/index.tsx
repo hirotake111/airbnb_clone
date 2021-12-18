@@ -9,10 +9,11 @@ import Hero from "../components/hero/Hero";
 import NextTrip from "../components/nextTrip/NextTrip";
 
 const Home: NextPage = () => {
-  const { disableSearch } = useSearch();
+  const { disableSearch, scrolled } = useSearch();
 
   return (
     <>
+      <div id="target" aria-label={scrolled ? "scrolled" : "unscrolled"}></div>
       <div className={styles.navContainer}>
         <Nav />
       </div>
