@@ -18,7 +18,7 @@ export default function Hero() {
       </div>
       {/** image for mobile device */}
       <div className={styles.imageContainer_mobile}>
-        <Image aria-label="hero mobile image" src={MobileImage} />
+        <Image aria-label="hero mobile image" src={MobileImage} priority />
       </div>
       {/** image for other device */}
       <div className={styles.imageContainer}>
@@ -29,7 +29,7 @@ export default function Hero() {
           height="960"
           alt="Hero image"
           layout="responsive"
-          priority={true}
+          priority
         />
       </div>
     </div>

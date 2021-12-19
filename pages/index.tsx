@@ -6,9 +6,9 @@ import GiftCard from "../components/giftcard/GiftCard/GiftCard";
 import Hero from "../components/hero/Hero";
 import NextTrip from "../components/nextTrip/NextTrip";
 import MobileMenu from "../components/mobileMenu/MobileMenu/MobileMenu";
+import Discover from "../components/discover/Discover/Discover";
 
 import styles from "../styles/Home.module.css";
-import Discover from "../components/discover/Discover/Discover";
 
 const Home: NextPage = () => {
   const { disableSearch, scrolled } = useSearch();
