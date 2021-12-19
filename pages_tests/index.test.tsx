@@ -12,6 +12,7 @@ jest.mock("../hooks/searchHook", () => ({
 jest.mock("../components/Nav/Nav/Nav");
 jest.mock("../components/hero/Hero");
 jest.mock("../components/giftcard/GiftCard/GiftCard");
+jest.mock("../components/discover/Discover/Discover");
 
 beforeEach(cleanup);
 

@@ -8,6 +8,7 @@ import NextTrip from "../components/nextTrip/NextTrip";
 import MobileMenu from "../components/mobileMenu/MobileMenu/MobileMenu";
 
 import styles from "../styles/Home.module.css";
+import Discover from "../components/discover/Discover/Discover";
 
 const Home: NextPage = () => {
   const { disableSearch, scrolled } = useSearch();
@@ -33,6 +34,7 @@ const Home: NextPage = () => {
         </div>
         <GiftCard />
         <NextTrip />
+        <Discover />
         <div className={styles.mobileMenu}>
           <MobileMenu />
         </div>

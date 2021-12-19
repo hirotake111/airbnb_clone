@@ -16,6 +16,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 24px;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .items__parent::-webkit-scrollbar {

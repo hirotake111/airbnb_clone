@@ -104,7 +104,7 @@
   }
 
   .labels__container {
-    justify-content: end;
+    justify-content: flex-end;
     padding: 30px;
   }
 
