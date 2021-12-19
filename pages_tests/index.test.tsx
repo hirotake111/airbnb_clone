@@ -14,6 +14,8 @@ jest.mock("../components/hero/Hero");
 jest.mock("../components/giftcard/GiftCard/GiftCard");
 jest.mock("../components/discover/Discover/Discover");
 jest.mock("../components/hosting/Hosting");
+jest.mock("../components/footer/Footer");
+
 beforeEach(cleanup);
 
 it("should render Home", () => {

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import PC from "../../public/hosting/hero.jpg";
 import Mobile from "../../public/hosting/hero_mobile.jpg";
@@ -18,15 +19,15 @@ export default function Hosting() {
             <br />
             hosting?
           </span>
-          <a href="/">
+          <Link href="/" passHref>
             <WhiteButton>Ask a Superhost</WhiteButton>
-          </a>
+          </Link>
         </div>
         <div className={[styles.image, styles.image_pc].join(" ")}>
-          <Image src={PC} layout="responsive" />
+          <Image src={PC} layout="responsive" alt="superhost" />
         </div>
         {/* <div className={[styles.image, styles.image_mobile].join(" ")}>
-        <Image src={Mobile} />
+        <Image src={Mobile} alt="superhost" />
       </div> */}
       </div>
     </div>

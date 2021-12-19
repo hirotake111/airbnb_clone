@@ -8,6 +8,7 @@ import NextTrip from "../components/nextTrip/NextTrip";
 import MobileMenu from "../components/mobileMenu/MobileMenu/MobileMenu";
 import Discover from "../components/discover/Discover/Discover";
 import Hosting from "../components/hosting/Hosting";
+import Footer from "../components/footer/Footer";
 
 import styles from "../styles/Home.module.css";
 
@@ -37,6 +38,7 @@ const Home: NextPage = () => {
         <NextTrip />
         <Discover />
         <Hosting />
+        <Footer />
         <div className={styles.mobileMenu}>
           <MobileMenu />
         </div>

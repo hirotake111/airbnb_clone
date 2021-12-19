@@ -1,0 +1,47 @@
+.container {
+  padding: 48px 80px 0 80px;
+  background-color: #f7f7f7;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1);
+  padding-bottom: 48px;
+}
+
+.company {
+  border-top: 1px solid #dddddd;
+  padding: 24px 0 24px 0;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgb(34, 34, 34);
+  /* height: 20px; */
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__header {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.menu__link {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgb(34, 34, 34);
+}
+
+.menu__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

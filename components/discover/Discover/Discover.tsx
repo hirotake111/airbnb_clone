@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Outside from "../../../public/discover/outside.jpg";
 import OutsideMobile from "../../../public/discover/outside_mobile.jpg";
@@ -61,9 +62,9 @@ const Item = ({
     <div className={styles.pictureContainer}>
       <div className={styles.titleAndButton}>
         <span className={styles.subTitle}>{subTitle}</span>
-        <a href={href}>
+        <Link href={href} passHref>
           <WhiteButton>{buttonLabel}</WhiteButton>
-        </a>
+        </Link>
       </div>
       {/** image for PC */}
       <div
