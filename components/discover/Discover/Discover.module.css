@@ -54,6 +54,12 @@
   padding: 14px 24px;
   border-radius: 8px;
   font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.button:hover {
+  background-color: #ebebeb;
 }
 
 @media (width <= 1440px) {

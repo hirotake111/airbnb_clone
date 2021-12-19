@@ -4,6 +4,7 @@ import Outside from "../../../public/discover/outside.jpg";
 import OutsideMobile from "../../../public/discover/outside_mobile.jpg";
 import Inside from "../../../public/discover/inside.jpg";
 import InsideMobile from "../../../public/discover/inside_mobile.jpg";
+import WhiteButton from "../../common/WhiteButton/WhiteButton";
 
 import styles from "./Discover.module.css";
 
@@ -61,9 +62,10 @@ const Item = ({
       <div className={styles.titleAndButton}>
         <span className={styles.subTitle}>{subTitle}</span>
         <a href={href}>
-          <button className={styles.button}>{buttonLabel}</button>
+          <WhiteButton>{buttonLabel}</WhiteButton>
         </a>
       </div>
+      {/** image for PC */}
       <div
         className={[styles.pictureContainer, styles.pictureContainer_pc].join(
           " "
@@ -71,6 +73,7 @@ const Item = ({
       >
         <Image src={picture} alt={subTitle} />
       </div>
+      {/** image for mobile device */}
       <div
         className={[
           styles.pictureContainer,

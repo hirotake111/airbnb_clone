@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+  margin: 0 80px 48px 80px;
+  /* border-radius: 12px; */
+  /* overflow: hidden; */
+  /* width: min(100%, 1600px); */
+}
+
+.innerContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 80px;
+}
+
+.titleAndButton {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  /* margin: 80px; */
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  font-size: 95px;
+  color: #fff;
+}
+
+.image {
+  position: absolute;
+  border-radius: 12px;
+  overflow: hidden;
+  width: min(100%, 1600px);
+}
+
+@media (width <= 1127px) {
+  .container {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+@media (width <= 800px) {
+  .container {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}

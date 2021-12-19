@@ -13,7 +13,7 @@ jest.mock("../components/Nav/Nav/Nav");
 jest.mock("../components/hero/Hero");
 jest.mock("../components/giftcard/GiftCard/GiftCard");
 jest.mock("../components/discover/Discover/Discover");
-
+jest.mock("../components/hosting/Hosting");
 beforeEach(cleanup);
 
 it("should render Home", () => {

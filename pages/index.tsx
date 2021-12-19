@@ -7,6 +7,7 @@ import Hero from "../components/hero/Hero";
 import NextTrip from "../components/nextTrip/NextTrip";
 import MobileMenu from "../components/mobileMenu/MobileMenu/MobileMenu";
 import Discover from "../components/discover/Discover/Discover";
+import Hosting from "../components/hosting/Hosting";
 
 import styles from "../styles/Home.module.css";
 
@@ -35,6 +36,7 @@ const Home: NextPage = () => {
         <GiftCard />
         <NextTrip />
         <Discover />
+        <Hosting />
         <div className={styles.mobileMenu}>
           <MobileMenu />
         </div>
