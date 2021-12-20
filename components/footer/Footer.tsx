@@ -48,7 +48,7 @@ const collections: SectionProps[] = [
 
 export default function Footer() {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container}>
       <div className={styles.rows}>
         <div className={styles.columns}>
           {collections.map((collection) => (
@@ -59,7 +59,7 @@ export default function Footer() {
           © 2021 Airbnb, Inc.·Privacy·Terms·Sitemap
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

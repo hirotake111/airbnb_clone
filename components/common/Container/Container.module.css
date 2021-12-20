@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 80px;
+  max-width: min(100%, 1600px);
+}
+
+@media (width <= 1127px) {
+  .container {
+    margin: 40px;
+    overflow: hidden;
+  }
+}
+
+@media (width <= 1127px) {
+  .container {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+@media (width <= 800px) {
+  .container {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}

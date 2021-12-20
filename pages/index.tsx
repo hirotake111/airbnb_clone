@@ -11,6 +11,7 @@ import Hosting from "../components/hosting/Hosting";
 import Footer from "../components/footer/Footer";
 
 import styles from "../styles/Home.module.css";
+import Container from "../components/common/Container/Container";
 
 const Home: NextPage = () => {
   const { disableSearch, scrolled } = useSearch();
@@ -36,9 +37,11 @@ const Home: NextPage = () => {
         </div>
         <GiftCard />
         <NextTrip />
-        <Discover />
+        <Container>
+          <Discover />
+        </Container>
         <Hosting />
-        <Footer />
+        {/* <Footer /> */}
         <div className={styles.mobileMenu}>
           <MobileMenu />
         </div>

@@ -28,7 +28,8 @@ const items: Props[] = [
 
 export default function Discover() {
   return (
-    <div className={styles.container}>
+    <>
+      {/* <div className={styles.container}> */}
       <div className={styles.titleContainer}>
         <span aria-label="title" className={styles.title}>
           Discover Airbnb Experiences
@@ -39,7 +40,8 @@ export default function Discover() {
           <Item key={item.subTitle} {...item} />
         ))}
       </div>
-    </div>
+      {/* </div> */}
+    </>
   );
 }
 
@@ -63,7 +65,9 @@ const Item = ({
       <div className={styles.titleAndButton}>
         <span className={styles.subTitle}>{subTitle}</span>
         <Link href={href} passHref>
-          <WhiteButton>{buttonLabel}</WhiteButton>
+          <a>
+            <WhiteButton>{buttonLabel}</WhiteButton>
+          </a>
         </Link>
       </div>
       {/** image for PC */}
@@ -72,7 +76,7 @@ const Item = ({
           " "
         )}
       >
-        <Image src={picture} alt={subTitle} />
+        <Image src={picture} layout="responsive" alt={subTitle} />
       </div>
       {/** image for mobile device */}
       <div

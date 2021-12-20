@@ -24,12 +24,7 @@
 
 .container {
   position: relative;
-  margin: 0 80px 0 80px;
-}
-
-.background {
-  display: flex;
-  flex-direction: column;
+  border-radius: 12px;
 }
 
 .image {

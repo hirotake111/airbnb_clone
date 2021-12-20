@@ -1,8 +1,8 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   margin: 48px 80px 96px 80px;
-}
+} */
 
 .titleContainer {
   margin-bottom: 48px;
@@ -73,10 +73,10 @@
 }
 
 @media (width <= 1127px) {
-  .container {
+  /* .container {
     margin-left: 40px;
     margin-right: 40px;
-  }
+  } */
 
   .titleAndButton {
     padding: 24px;
@@ -88,10 +88,10 @@
 }
 
 @media (width <= 800px) {
-  .container {
+  /* .container {
     margin-left: 24px;
     margin-right: 24px;
-  }
+  } */
 
   .itemsContainer {
     grid-template-columns: repeat(1, 1fr);
