@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import styles from "./Footer.module.css";
 
-const collections: SectionProps[] = [
+const items: ItemProps[] = [
   {
     header: "Support",
     links: [
@@ -49,10 +49,10 @@ const collections: SectionProps[] = [
 export default function Footer() {
   return (
     <footer className={styles.container}>
-      <div className={styles.rows}>
-        <div className={styles.columns}>
-          {collections.map((collection) => (
-            <Section key={collection.header} {...collection} />
+      <div className={styles.menuAndCompany}>
+        <div className={styles.menuCollections}>
+          {items.map((item) => (
+            <Item key={item.header} {...item} />
           ))}
         </div>
         <div className={styles.company}>
@@ -68,20 +68,22 @@ interface Link {
   href: string;
 }
 
-interface SectionProps {
+interface ItemProps {
   header: string;
   links: Link[];
 }
 
-const Section = ({ header, links }: SectionProps) => {
+const Item = ({ header, links }: ItemProps) => {
   return (
     <div className={styles.menu}>
       <span className={styles.menu__header}>{header}</span>
-      {links.map(({ label, href }) => (
-        <span key={label} className={styles.menu__link}>
-          <Link href={href}>{label}</Link>
-        </span>
-      ))}
+      <div className={styles.menu__linksContaier}>
+        {links.map(({ label, href }) => (
+          <span key={label} className={styles.menu__link}>
+            <Link href={href}>{label}</Link>
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

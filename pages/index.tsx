@@ -41,7 +41,7 @@ const Home: NextPage = () => {
           <Discover />
         </Container>
         <Hosting />
-        {/* <Footer /> */}
+        <Footer />
         <div className={styles.mobileMenu}>
           <MobileMenu />
         </div>
