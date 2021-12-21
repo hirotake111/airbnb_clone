@@ -14,6 +14,7 @@ jest.mock("../components/hero/Hero");
 jest.mock("../components/giftcard/GiftCard/GiftCard");
 jest.mock("../components/discover/Discover/Discover");
 jest.mock("../components/hosting/Hosting");
+jest.mock("../components/inspiration/Inspiration/Inspiration");
 jest.mock("../components/footer/Footer");
 
 beforeEach(cleanup);

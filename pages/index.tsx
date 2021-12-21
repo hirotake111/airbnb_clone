@@ -12,6 +12,7 @@ import Footer from "../components/footer/Footer";
 
 import styles from "../styles/Home.module.css";
 import Container from "../components/common/Container/Container";
+import Inspiration from "../components/inspiration/Inspiration/Inspiration";
 
 const Home: NextPage = () => {
   const { disableSearch, scrolled } = useSearch();
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
           <Discover />
         </Container>
         <Hosting />
+        <Inspiration />
         <Footer />
         <div className={styles.mobileMenu}>
           <MobileMenu />
