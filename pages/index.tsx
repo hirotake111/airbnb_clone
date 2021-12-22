@@ -9,10 +9,10 @@ import MobileMenu from "../components/mobileMenu/MobileMenu/MobileMenu";
 import Discover from "../components/discover/Discover/Discover";
 import Hosting from "../components/hosting/Hosting";
 import Footer from "../components/footer/Footer";
-
-import styles from "../styles/Home.module.css";
 import Container from "../components/common/Container/Container";
 import Inspiration from "../components/inspiration/Inspiration/Inspiration";
+
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const { disableSearch, scrolled } = useSearch();
@@ -42,7 +42,9 @@ const Home: NextPage = () => {
           <Discover />
         </Container>
         <Hosting />
-        <Inspiration />
+        <Container>
+          <Inspiration />
+        </Container>
         <Footer />
         <div className={styles.mobileMenu}>
           <MobileMenu />

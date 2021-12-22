@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(34, 34, 34);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContainer {
+  display: flex;
+}
+
+.header {
+  border: none;
+  background-color: #fff;
+  margin: 6px;
+  border-radius: 8px;
+  padding: 10px;
+  color: rgb(113, 113, 113);
+}
+
+.header_highlighted {
+  color: #000;
+}
+
+.header:first-child {
+  margin-right: -10px;
+}
+
+.header:hover {
+  background-color: rgb(247, 247, 247);
+}
+
+.header_highlighted {
+  color: rgb(34, 34, 34);
+}
+
+.location__innerContainer {
+  display: flex;
+  flex-direction: column;
+}

@@ -18,3 +18,21 @@ export type SearchFocusedTypes =
   | "checkOut"
   | "guests"
   | null;
+
+export type InspirationHeaderName =
+  | "Destinations for arts & culture"
+  | "Destinations for outdoor adventure"
+  | "Mountain cabins"
+  | "Beach destinations"
+  | "Popular destinations"
+  | "Unique Stays";
+
+export interface InspirationHeader {
+  headerName: InspirationHeaderName;
+  locations: LocationProps[];
+}
+
+export interface InspiractionLocation {
+  primary: string;
+  secondary: string;
+}
