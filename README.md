@@ -4,7 +4,6 @@
 
 ### TODOs
 
-- fix issue where gift card hides navbar
 - add calendar
 - update search form
 - add subsequent components

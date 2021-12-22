@@ -42,18 +42,16 @@ type HeaderProps = InspirationHeader & {
 const Header = (props: HeaderProps) => {
   return (
     <>
-      <div className={styles.headerContainer}>
-        <button
-          aria-label={props.headerName}
-          className={[
-            styles.header,
-            props.highlighted ? styles.header_highlighted : "",
-          ].join(" ")}
-          onClick={props.onClick}
-        >
-          {props.headerName}
-        </button>
-      </div>
+      <button
+        aria-label={props.headerName}
+        className={[
+          styles.header,
+          props.highlighted ? styles.header_highlighted : "",
+        ].join(" ")}
+        onClick={props.onClick}
+      >
+        {props.headerName}
+      </button>
     </>
   );
 };
