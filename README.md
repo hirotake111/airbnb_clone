@@ -6,7 +6,6 @@
 
 - add calendar
 - update search form
-- add subsequent components
 
 ```bash
 # run dev server

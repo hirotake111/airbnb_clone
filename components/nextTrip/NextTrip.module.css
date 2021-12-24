@@ -25,6 +25,7 @@
 
 .items__container {
   height: 100%;
+  cursor: pointer;
 }
 
 .item__outline {
