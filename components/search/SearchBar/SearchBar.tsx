@@ -3,10 +3,10 @@ import { useMemo } from "react";
 import { useSearch } from "../../../hooks/searchHook";
 import { useOnclickOutside } from "../../../hooks/clickHook";
 
-import SearchModal from "../../search/SearchModal/SearchModal";
+import SearchModal from "../SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
-import Location from "../../search/Location.tsx/Location";
+import Location from "../Location.tsx/Location";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {

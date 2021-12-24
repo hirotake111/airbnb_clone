@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../../search/SearchBar/SearchBar";
 import styles from "./CenterMenu.module.css";
 
 export default function Centermenu() {

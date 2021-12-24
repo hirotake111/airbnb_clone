@@ -1,7 +1,9 @@
 import { render } from "@testing-library/react";
 import Centermenu from "./CenterMenu";
 
-jest.mock("../SearchBar/SearchBar");
+// mock component
+jest.mock("../../search/SearchBar/SearchBar");
+
 it("should render", () => {
   expect.assertions(1);
   const { getByText } = render(<Centermenu />);

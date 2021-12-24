@@ -4,15 +4,13 @@ import RectangleButton from "../../common/RectangleButton/RectangleButton";
 import styles from "./GiftCard.module.css";
 import MobileImage from "../../../public/giftcard/giftcard_mobile.jpg";
 import Container from "../../common/Container/Container";
+import Background from "../../common/Background/Background";
 
 export default function GiftCard() {
   return (
     <div className={styles.root}>
       {/** background */}
-      <div className={styles.background}>
-        <div className={styles.black}></div>
-        <div className={styles.white}></div>
-      </div>
+      <Background />
       <Container>
         <div className={styles.container}>
           {/** label and button */}
@@ -24,7 +22,6 @@ export default function GiftCard() {
                 <br />
                 gift cards
               </span>
-
               <RectangleButton label="Shop now" />
             </div>
           </div>
