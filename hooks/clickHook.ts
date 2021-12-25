@@ -21,19 +21,29 @@ export const useOnclickOutside = () => {
   /**
    * set value false and remove event listener
    */
-  const closeSearchBar = (e?: MouseEvent) => {
-    if (e) {
-      const a = e as Event;
-      console.log(e.target.classList[0], "id:", e.target.id);
-    }
+  const closeSearchBar = (e: MouseEvent) => {
+    // close search component (not search bar)
     setOpened(false);
+    // check if search bar is clicked
+    const isSearchBarClicked = document
+      .getElementById("search_form")
+      ?.contains(e.target as Node);
     document.removeEventListener("mousedown", callback);
-    // if scrolled, disable search menu
-    if (scrolled) {
-      dispatch(disableSearch());
+    // if scrolled and search bar is not clicked, disable search menu
+    if (scrolled && !isSearchBarClicked) {
+      disableSearchBar();
     }
   };
 
+  // disable search bar and search component
+  const disableSearchBar = () => {
+    setOpened(false);
+    dispatch(disableSearch());
+  };
+
+  /**
+   * check if clicked element is not a certain part of elements, then disable search bar
+   */
   const callback = (e: MouseEvent) => {
     if (!(ref && ref.current)) return;
     // if user clicked inside of div element, do nothing
@@ -43,8 +53,9 @@ export const useOnclickOutside = () => {
   };
 
   useEffect(() => {
+    // if window is scrolled, then disable searchbar
     if (scrolled) {
-      closeSearchBar();
+      disableSearchBar();
     }
   }, [scrolled]);
 

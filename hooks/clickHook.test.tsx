@@ -9,7 +9,7 @@ const Component = () => {
     useOnclickOutside();
   const dispatch = useAppDispatch();
   const handleClick = () => {
-    dispatch(makeBgWhite());
+    dispatch(makeBgWhite()); // virtually scrolled
   };
   return (
     <div aria-label="outer">

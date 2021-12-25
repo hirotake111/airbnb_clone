@@ -31,7 +31,7 @@ export default function SearchBar() {
         onClick={enableSearch}
       >
         {enabled ? (
-          <div className={styles.search__form}>
+          <div id="search_form" className={styles.search__form}>
             <div className={styles.search__location}>
               <SearchItem
                 label="Location"
