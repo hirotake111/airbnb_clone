@@ -27,6 +27,19 @@ beforeEach(() => {
 });
 
 describe("integration test", () => {
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
+
   it("should render value scrolled false", () => {
     expect.assertions(1);
     expect(result.getByLabelText("state").textContent).toBe("not scrolled");

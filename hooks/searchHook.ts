@@ -14,10 +14,14 @@ export const useSearch = () => {
   const { scrolled } = useAppSelector((state) => state.window);
 
   const enable = () => {
-    if (!enabled) dispatch(enableSearch());
+    if (!enabled) {
+      dispatch(enableSearch());
+    }
   };
   const disable = () => {
-    if (enabled && scrolled) dispatch(disableSearch());
+    if (enabled && scrolled) {
+      dispatch(disableSearch());
+    }
   };
 
   const toggleScrolled = () => {

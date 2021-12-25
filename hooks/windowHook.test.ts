@@ -23,6 +23,19 @@ const mockObserver = jest.fn().mockImplementation((callback) => {
 window.IntersectionObserver = mockObserver;
 
 describe("useWindow", () => {
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
+
   beforeEach(() => {
     mockObserver.mockClear();
     mockQuerySelector.mockClear();

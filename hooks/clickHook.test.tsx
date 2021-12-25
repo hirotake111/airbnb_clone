@@ -5,7 +5,8 @@ import { useOnclickOutside } from "./clickHook";
 import { makeBgWhite } from "../redux/windowSlice";
 
 const Component = () => {
-  const { ref, open, close, opened, enabled } = useOnclickOutside();
+  const { ref, openSearchBar, closeSearchBar, opened, enabled } =
+    useOnclickOutside();
   const dispatch = useAppDispatch();
   const handleClick = () => {
     dispatch(makeBgWhite());
@@ -16,13 +17,13 @@ const Component = () => {
         <p>modal</p>
         <span aria-label="opened">{opened ? "true" : "false"}</span>
         <span aria-label="search enabled">{enabled ? "true" : "false"}</span>
-        <button aria-label="button" onClick={open}>
+        <button aria-label="open search bar" onClick={openSearchBar}>
           open
         </button>
         <button aria-label="scroll" onClick={handleClick}>
           scroll
         </button>
-        <button aria-label="close" onClick={close}>
+        <button aria-label="close" onClick={(e) => closeSearchBar(e as any)}>
           close
         </button>
       </div>
@@ -39,6 +40,19 @@ const Wrapped = () => {
 };
 
 describe("useOnclikcOutside", () => {
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
+
   test(" vlaue 'open' should be false by default", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
@@ -48,14 +62,14 @@ describe("useOnclikcOutside", () => {
   test("open() should change the value of open", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
-    fireEvent.click(getByLabelText("button"));
+    fireEvent.click(getByLabelText("open search bar"));
     expect(getByLabelText("opened").textContent).toBe("true");
   });
 
   test("clicking outer div should invoke callback", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
-    fireEvent.click(getByLabelText("button"));
+    fireEvent.click(getByLabelText("open search bar"));
     fireEvent.mouseDown(getByLabelText("outer"));
     expect(getByLabelText("opened").textContent).toBe("false");
   });
@@ -63,7 +77,7 @@ describe("useOnclikcOutside", () => {
   test("clicking inner div should not change the value of open", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
-    fireEvent.click(getByLabelText("button"));
+    fireEvent.click(getByLabelText("open search bar"));
     fireEvent.mouseDown(getByLabelText("opened"));
     expect(getByLabelText("opened").textContent).toBe("true");
   });
@@ -71,9 +85,10 @@ describe("useOnclikcOutside", () => {
   test("value 'open' should be false if scrolled is true", () => {
     expect.assertions(2);
     const { getByLabelText } = render(<Wrapped />);
-    // click button and change value true
-    fireEvent.click(getByLabelText("button"));
+    // click button and open search bar
+    fireEvent.click(getByLabelText("open search bar"));
     expect(getByLabelText("opened").textContent).toBe("true");
+    // click button and scroll down
     fireEvent.click(getByLabelText("scroll"));
     expect(getByLabelText("opened").textContent).toBe("false");
   });

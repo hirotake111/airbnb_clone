@@ -2,6 +2,19 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import { useCountryData } from "./inspirationHook";
 
 describe("useCounryData", () => {
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
+
   it("should return headers, highlightedHeader, and update()", () => {
     expect.assertions(3);
     const { result } = renderHook(() => useCountryData());

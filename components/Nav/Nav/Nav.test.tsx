@@ -15,6 +15,19 @@ jest.mock("../../../hooks/searchHook", () => ({
 jest.mock("../CenterMenu/CenterMenu");
 const WrappedComponent = () => <Nav />;
 
+let log = console.log;
+let group = console.group;
+
+beforeAll(() => {
+  console.log = jest.fn();
+  console.group = jest.fn();
+});
+
+afterAll(() => {
+  console.log = log;
+  console.group = group;
+});
+
 it("should render navbar", () => {
   expect.assertions(1);
   mockWindowHook.mockReturnValue(false);

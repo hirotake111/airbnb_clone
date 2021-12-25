@@ -5,6 +5,19 @@ import { store } from "../redux/store";
 import { useSearch, useSearchFocus } from "./searchHook";
 
 describe("useSearch", () => {
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
+
   // fake component
   const Component = () => {
     const { enabled, scrolled, enableSearch, disableSearch, toggleScrolled } =
@@ -97,6 +110,19 @@ describe("useSearchFocus", () => {
       <Component />
     </Provider>
   );
+
+  let log = console.log;
+  let group = console.group;
+
+  beforeAll(() => {
+    console.log = jest.fn();
+    console.group = jest.fn();
+  });
+
+  afterAll(() => {
+    console.log = log;
+    console.group = group;
+  });
 
   it("should update state.focused", () => {
     expect.assertions(5);

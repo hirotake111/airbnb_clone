@@ -17,6 +17,19 @@ jest.mock("../../../hooks/clickHook", () => ({
   useOnclickOutside: () => mockUseOnclickOutside(),
 }));
 
+let log = console.log;
+let group = console.group;
+
+beforeAll(() => {
+  console.log = jest.fn();
+  console.group = jest.fn();
+});
+
+afterAll(() => {
+  console.log = log;
+  console.group = group;
+});
+
 it("should render search bar", () => {
   expect.assertions(1);
   mockUseSearch.mockReturnValue({

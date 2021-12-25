@@ -37,7 +37,7 @@ export default function SearchBar() {
                 label="Location"
                 placeholder="Where are you going?"
                 isTextForm
-                onClick={location.open}
+                onClick={location.openSearchBar}
               />
             </div>
             <Divider />
@@ -45,13 +45,13 @@ export default function SearchBar() {
               <SearchItem
                 label="Check in"
                 placeholder="Add dates"
-                onClick={checkIn.open}
+                onClick={checkIn.openSearchBar}
               />
               <Divider />
               <SearchItem
                 label="Check Out"
                 placeholder="Add dates"
-                onClick={checkOut.open}
+                onClick={checkOut.openSearchBar}
               />
               <Divider />
             </div>
@@ -65,7 +65,7 @@ export default function SearchBar() {
               <SearchItem
                 label="Guests"
                 placeholder="Add guests"
-                onClick={guests.open}
+                onClick={guests.openSearchBar}
                 icon={<SearchIcon size="md" searchFocused={searchFocused} />}
               />
             </div>

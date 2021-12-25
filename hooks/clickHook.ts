@@ -8,24 +8,30 @@ export const useOnclickOutside = () => {
   const { scrolled } = useAppSelector((state) => state.window);
   const { enabled } = useAppSelector((state) => state.search);
 
-  const [opened, setEnabled] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   /**
    * set value true and add event listener
    */
-  const open = () => {
-    setEnabled(true);
+  const openSearchBar = () => {
+    setOpened(true);
     document.addEventListener("mousedown", callback);
   };
 
   /**
    * set value false and remove event listener
    */
-  const close = () => {
-    setEnabled(false);
+  const closeSearchBar = (e?: MouseEvent) => {
+    if (e) {
+      const a = e as Event;
+      console.log(e.target.classList[0], "id:", e.target.id);
+    }
+    setOpened(false);
     document.removeEventListener("mousedown", callback);
     // if scrolled, disable search menu
-    if (scrolled) dispatch(disableSearch());
+    if (scrolled) {
+      dispatch(disableSearch());
+    }
   };
 
   const callback = (e: MouseEvent) => {
@@ -33,12 +39,14 @@ export const useOnclickOutside = () => {
     // if user clicked inside of div element, do nothing
     if (ref.current.contains(e.target as Node)) return;
     // else, close it and remove event listener
-    close();
+    closeSearchBar(e);
   };
 
   useEffect(() => {
-    if (scrolled) close();
+    if (scrolled) {
+      closeSearchBar();
+    }
   }, [scrolled]);
 
-  return { ref, open, close, opened, enabled };
+  return { ref, openSearchBar, closeSearchBar, opened, enabled };
 };
