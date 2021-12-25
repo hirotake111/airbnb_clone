@@ -7,6 +7,8 @@ import SearchModal from "../SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
 import Location from "../Location.tsx/Location";
+import Calendar from "../Calendar/Calendar";
+
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
@@ -92,7 +94,7 @@ export default function SearchBar() {
           <Location />
         </SearchModal>
         <SearchModal opened={checkIn.opened} reference={checkIn.ref}>
-          <div>check in</div>
+          <Calendar />
         </SearchModal>
         <SearchModal opened={checkOut.opened} reference={checkOut.ref}>
           <div>check out</div>

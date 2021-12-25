@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import "../styles/Calendar.css"; // react calendar
+
 import type { AppProps } from "next/app";
 
 import Header from "../components/Header/Header";
