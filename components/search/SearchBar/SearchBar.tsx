@@ -16,19 +16,27 @@ import { useAppSelector } from "../../../redux/store";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
-  const location = useOnclickOutside();
-  const checkIn = useOnclickOutside();
-  const checkOut = useOnclickOutside();
-  const guests = useOnclickOutside();
+  const location = useOnclickOutside("location");
+  const checkIn = useOnclickOutside("checkIn");
+  const checkOut = useOnclickOutside("checkOut");
+  const guests = useOnclickOutside("guests");
 
   const dispatch = useDispatch();
-  const { schedule } = useAppSelector((state) => state.search);
+  const { schedule, focused } = useAppSelector((state) => state.search);
 
   const searchFocused = useMemo(() => {
     return (
-      location.opened || checkIn.opened || checkOut.opened || guests.opened
+      location.modalOpened ||
+      checkIn.modalOpened ||
+      checkOut.modalOpened ||
+      guests.modalOpened
     );
-  }, [location.opened, checkIn.opened, checkOut.opened, guests.opened]);
+  }, [
+    location.modalOpened,
+    checkIn.modalOpened,
+    checkOut.modalOpened,
+    guests.modalOpened,
+  ]);
 
   const checkInDate = useMemo<string | undefined>(() => {
     // if date is invalid date, return empty string
@@ -61,6 +69,7 @@ export default function SearchBar() {
                 placeholder="Where are you going?"
                 isTextForm
                 onClick={location.openSearchBar}
+                focused={location.modalOpened}
               />
             </div>
             <Divider />
@@ -73,6 +82,7 @@ export default function SearchBar() {
                   dispatch(updateSelectedDate("checkin"));
                 }}
                 value={checkInDate}
+                focused={checkIn.modalOpened}
               />
               <Divider />
               <SearchItem
@@ -83,6 +93,7 @@ export default function SearchBar() {
                   dispatch(updateSelectedDate("checkout"));
                 }}
                 value={checkOutDate}
+                focused={checkOut.modalOpened}
               />
               <Divider />
             </div>
@@ -98,6 +109,7 @@ export default function SearchBar() {
                 placeholder="Add guests"
                 onClick={guests.openSearchBar}
                 icon={<SearchIcon size="md" searchFocused={searchFocused} />}
+                focused={guests.modalOpened}
               />
             </div>
           </div>
@@ -116,20 +128,24 @@ export default function SearchBar() {
       {/** location menu modal */}
       <div style={{ marginTop: "12px" }}>
         <SearchModal
-          opened={location.opened}
+          opened={location.modalOpened}
           reference={location.ref}
           width={500}
         >
           <Location />
         </SearchModal>
-        <SearchModal opened={checkIn.opened} reference={checkIn.ref}>
+        <SearchModal opened={checkIn.modalOpened} reference={checkIn.ref}>
           <Calendar />
         </SearchModal>
-        <SearchModal opened={checkOut.opened} reference={checkOut.ref}>
+        <SearchModal opened={checkOut.modalOpened} reference={checkOut.ref}>
           {/* <div>check out</div> */}
           <Calendar />
         </SearchModal>
-        <SearchModal opened={guests.opened} reference={guests.ref} width={500}>
+        <SearchModal
+          opened={guests.modalOpened}
+          reference={guests.ref}
+          width={500}
+        >
           <div>guests</div>
         </SearchModal>
       </div>

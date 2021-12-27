@@ -1,20 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { disableSearch } from "../redux/searchSlice";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { changeSearchFocus, disableSearch } from "../redux/searchSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
+import { SearchFocusedTypes } from "../types/types";
 
-export const useOnclickOutside = () => {
+export const useOnclickOutside = (type: SearchFocusedTypes) => {
   const ref = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
   const { scrolled } = useAppSelector((state) => state.window);
-  const { enabled } = useAppSelector((state) => state.search);
+  const { enabled, focused } = useAppSelector((state) => state.search);
 
-  const [opened, setOpened] = useState(false);
+  const modalOpened = useMemo(() => focused === type, [focused]);
 
   /**
    * set value true and add event listener
    */
   const openSearchBar = () => {
-    setOpened(true);
+    // update global state -> open modal
+    dispatch(changeSearchFocus(type));
     document.addEventListener("mousedown", callback);
   };
 
@@ -22,29 +24,29 @@ export const useOnclickOutside = () => {
    * set value false and remove event listener
    */
   const closeSearchBar = (e: MouseEvent) => {
-    // close search component (not search bar)
-    setOpened(false);
     // check if search bar is clicked
-    const isSearchBarClicked = document
+    const barClicked = document
       .getElementById("search_form")
       ?.contains(e.target as Node);
     document.removeEventListener("mousedown", callback);
     // if scrolled and search bar is not clicked, disable search menu
-    if (scrolled && !isSearchBarClicked) {
+    if (scrolled && !barClicked) {
       disableSearchBar();
     }
   };
 
   // disable search bar and search component
   const disableSearchBar = () => {
-    setOpened(false);
     dispatch(disableSearch());
+    // disable modal too
+    dispatch(changeSearchFocus(null));
   };
 
   /**
    * check if clicked element is not a certain part of elements, then disable search bar
    */
   const callback = (e: MouseEvent) => {
+    // if user clicked this component, do nothing
     if (!(ref && ref.current)) return;
     // if user clicked inside of div element, do nothing
     if (ref.current.contains(e.target as Node)) return;
@@ -59,5 +61,11 @@ export const useOnclickOutside = () => {
     }
   }, [scrolled]);
 
-  return { ref, openSearchBar, closeSearchBar, opened, enabled };
+  return {
+    ref,
+    openSearchBar,
+    closeSearchBar,
+    modalOpened,
+    enabled,
+  };
 };

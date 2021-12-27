@@ -7,6 +7,7 @@ interface Props {
   value?: string;
   isTextForm?: boolean;
   icon?: ReactNode;
+  focused?: boolean;
   onClick?: () => void;
 }
 
@@ -16,12 +17,18 @@ export default function SearchItem({
   value,
   isTextForm,
   icon,
+  focused,
   onClick,
 }: Props) {
   return (
     <>
       <div className={styles.container} onClick={onClick}>
-        <div className={styles.hContainer}>
+        <div
+          className={[
+            styles.hContainer,
+            focused ? styles.hContainer_focused : "",
+          ].join(" ")}
+        >
           <div className={styles.vContainer}>
             <span className={styles.label}>{label}</span>
             {isTextForm ? (

@@ -18,6 +18,15 @@
   background: #ebebeb;
 }
 
+.hContainer_focused {
+  background: #fff;
+  box-shadow: 5.1px 0px 5.3px rgba(0, 0, 0, 0.028),
+    17.2px 0px 17.9px rgba(0, 0, 0, 0.042), 77px 0px 80px rgba(0, 0, 0, 0.07);
+}
+.hContainer_focused:hover {
+  background: #fff;
+}
+
 .vContainer {
   display: flex;
   flex-direction: column;
