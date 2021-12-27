@@ -7,7 +7,7 @@ import SearchModal from "../SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
 import SearchItem from "../SearchItem/SearchItem";
 import Location from "../Location.tsx/Location";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../calendar/Calendar/Calendar";
 
 import styles from "./SearchBar.module.css";
 

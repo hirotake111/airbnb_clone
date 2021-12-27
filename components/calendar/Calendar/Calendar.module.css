@@ -1,0 +1,5 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0 32px 0;
+}
