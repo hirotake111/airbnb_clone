@@ -4,6 +4,7 @@ import styles from "./SearchItem.module.css";
 interface Props {
   label: string;
   placeholder: string;
+  value?: string;
   isTextForm?: boolean;
   icon?: ReactNode;
   onClick?: () => void;
@@ -12,6 +13,7 @@ interface Props {
 export default function SearchItem({
   label,
   placeholder,
+  value,
   isTextForm,
   icon,
   onClick,
@@ -26,12 +28,13 @@ export default function SearchItem({
               <input
                 aria-label="search input"
                 type="text"
+                value={value}
                 className={styles.placeholder}
                 placeholder={placeholder}
               />
             ) : (
               <span aria-label="search text" className={styles.placeholder}>
-                {placeholder}
+                {value ? value : placeholder}
               </span>
             )}
           </div>

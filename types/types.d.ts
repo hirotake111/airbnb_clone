@@ -4,9 +4,24 @@ export interface WindowState {
   scrolled: boolean;
 }
 
+export type SelectedDate = "checkin" | "checkout";
+export type Schedule = {
+  checkIn: string;
+  checkOut: string;
+};
+export type Guests = {
+  adults: number;
+  children: number;
+  infants: number;
+  pets: number;
+};
 export interface SearchState {
   enabled: boolean;
   focused: SearchFocusedTypes;
+  selectedDate: SelectedDate;
+  location: string;
+  schedule: Schedule;
+  guests: Guests;
 }
 
 export type RootState = ReturnType<typeof store.getState>;

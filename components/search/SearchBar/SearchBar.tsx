@@ -10,6 +10,9 @@ import Location from "../Location.tsx/Location";
 import Calendar from "../../calendar/Calendar/Calendar";
 
 import styles from "./SearchBar.module.css";
+import { useDispatch } from "react-redux";
+import { updateSelectedDate } from "../../../redux/searchSlice";
+import { useAppSelector } from "../../../redux/store";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
@@ -18,11 +21,29 @@ export default function SearchBar() {
   const checkOut = useOnclickOutside();
   const guests = useOnclickOutside();
 
+  const dispatch = useDispatch();
+  const { schedule } = useAppSelector((state) => state.search);
+
   const searchFocused = useMemo(() => {
     return (
       location.opened || checkIn.opened || checkOut.opened || guests.opened
     );
   }, [location.opened, checkIn.opened, checkOut.opened, guests.opened]);
+
+  const checkInDate = useMemo<string | undefined>(() => {
+    // if date is invalid date, return empty string
+    if (!new Date(schedule.checkIn).getTime()) return "";
+    const arr = schedule.checkIn.split(" ");
+    return `${arr[1]} ${arr[2]}`;
+  }, [schedule.checkIn]);
+
+  const checkOutDate = useMemo<string | undefined>(() => {
+    // if date is invalid date, return empty string
+    if (!new Date(schedule.checkOut).getTime()) return "";
+    const arr = schedule.checkOut.split(" ");
+    console.log("arr", arr);
+    return `${arr[1]} ${arr[2]}`;
+  }, [schedule.checkOut]);
 
   return (
     <div className={styles.container}>
@@ -47,13 +68,21 @@ export default function SearchBar() {
               <SearchItem
                 label="Check in"
                 placeholder="Add dates"
-                onClick={checkIn.openSearchBar}
+                onClick={() => {
+                  checkIn.openSearchBar();
+                  dispatch(updateSelectedDate("checkin"));
+                }}
+                value={checkInDate}
               />
               <Divider />
               <SearchItem
                 label="Check Out"
                 placeholder="Add dates"
-                onClick={checkOut.openSearchBar}
+                onClick={() => {
+                  checkOut.openSearchBar();
+                  dispatch(updateSelectedDate("checkout"));
+                }}
+                value={checkOutDate}
               />
               <Divider />
             </div>
@@ -97,7 +126,8 @@ export default function SearchBar() {
           <Calendar />
         </SearchModal>
         <SearchModal opened={checkOut.opened} reference={checkOut.ref}>
-          <div>check out</div>
+          {/* <div>check out</div> */}
+          <Calendar />
         </SearchModal>
         <SearchModal opened={guests.opened} reference={guests.ref} width={500}>
           <div>guests</div>
