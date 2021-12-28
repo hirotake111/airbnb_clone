@@ -13,7 +13,7 @@ export default function ButtonsOnTop() {
   };
 
   return (
-    <div className={styles.button__container}>
+    <div aria-label="calendar buttons" className={styles.button__container}>
       <Button onClick={handleCalendarClick} highlighted={calendarHighlighted}>
         Calendar
       </Button>

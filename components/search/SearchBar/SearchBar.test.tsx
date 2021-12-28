@@ -2,7 +2,9 @@ import { render } from "@testing-library/react";
 
 import SearchBar from "./SearchBar";
 
+// mock components
 jest.mock("../SearchItem/SearchItem");
+jest.mock("../../calendar/Calendar/Calendar");
 
 // mock hooks
 const mockUseSearch = jest.fn();
@@ -11,14 +13,35 @@ jest.mock("../../../hooks/searchHook", () => ({
 }));
 const mockUseOnclickOutside = jest.fn();
 mockUseOnclickOutside.mockReturnValue({
-  open: jest.fn(),
+  openSearchBar: jest.fn(),
+  // closeSearchBar: jest.fn(),
 });
 jest.mock("../../../hooks/clickHook", () => ({
   useOnclickOutside: () => mockUseOnclickOutside(),
 }));
+const mockUseSchedule = jest.fn();
+jest.mock("../../../hooks/scheduleHook", () => ({
+  useSchedule: () => mockUseSchedule(),
+}));
+
+// mock dispatch and selector
+const mockDispatch = jest.fn();
+const mockSelector = jest.fn();
+jest.mock("react-redux", () => ({
+  useDispatch: () => mockDispatch,
+  useSelector: () => mockSelector(),
+}));
 
 let log = console.log;
 let group = console.group;
+
+beforeEach(() => {
+  mockUseSchedule.mockReturnValue({
+    checkInDate: "Dec 29",
+    checkOutDate: "Dec 31",
+  });
+  mockSelector.mockReturnValue({ focused: "location" });
+});
 
 beforeAll(() => {
   console.log = jest.fn();

@@ -1,31 +1,47 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, cleanup } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store, useAppDispatch } from "../redux/store";
 import { useOnclickOutside } from "./clickHook";
-import { makeBgWhite } from "../redux/windowSlice";
+import { makeBgBlack, makeBgWhite } from "../redux/windowSlice";
 
 const Component = () => {
-  const { ref, openSearchBar, closeSearchBar, opened, enabled } =
-    useOnclickOutside();
+  const { ref, openSearchBar, closeSearchBar, modalOpened, enabled } =
+    useOnclickOutside("location");
   const dispatch = useAppDispatch();
-  const handleClick = () => {
-    dispatch(makeBgWhite()); // virtually scrolled
-  };
+
   return (
     <div aria-label="outer">
       <div ref={ref}>
         <p>modal</p>
-        <span aria-label="opened">{opened ? "true" : "false"}</span>
-        <span aria-label="search enabled">{enabled ? "true" : "false"}</span>
-        <button aria-label="open search bar" onClick={openSearchBar}>
-          open
-        </button>
-        <button aria-label="scroll" onClick={handleClick}>
-          scroll
-        </button>
-        <button aria-label="close" onClick={(e) => closeSearchBar(e as any)}>
-          close
-        </button>
+        <div id="search_form">
+          <span aria-label="modal opened" onClick={() => {}}>
+            {modalOpened ? "true" : "false"}
+          </span>
+          <span aria-label="search bar enabled">
+            {enabled ? "true" : "false"}
+          </span>
+          <button aria-label="open search bar" onClick={openSearchBar}>
+            open search bar
+          </button>
+          <button
+            aria-label="scroll down"
+            onClick={() => dispatch(makeBgWhite())}
+          >
+            scroll down
+          </button>
+          <button
+            aria-label="scroll up"
+            onClick={() => dispatch(makeBgBlack())}
+          >
+            scroll up
+          </button>
+          <button
+            aria-label="close search bar"
+            onClick={(e) => closeSearchBar(e as any)}
+          >
+            close
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -44,6 +60,7 @@ describe("useOnclikcOutside", () => {
   let group = console.group;
 
   beforeAll(() => {
+    cleanup();
     console.log = jest.fn();
     console.group = jest.fn();
   });
@@ -53,53 +70,60 @@ describe("useOnclikcOutside", () => {
     console.group = group;
   });
 
-  test(" vlaue 'open' should be false by default", () => {
+  test("modal should be closed by default", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
-    expect(getByLabelText("opened").textContent).toBe("false");
+    expect(getByLabelText("modal opened").textContent).toBe("false");
   });
 
-  test("open() should change the value of open", () => {
+  test("openSearchBar() should change the value of open", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
     fireEvent.click(getByLabelText("open search bar"));
-    expect(getByLabelText("opened").textContent).toBe("true");
+    expect(getByLabelText("modal opened").textContent).toBe("true");
   });
 
-  test("clicking outer div should invoke callback", () => {
-    expect.assertions(1);
+  test("when windows is scrolled down, clicking outer div should close modal", () => {
+    expect.assertions(2);
     const { getByLabelText } = render(<Wrapped />);
+    // virtuall scroll window
+    fireEvent.click(getByLabelText("scroll down"));
+    // click and open search bar
     fireEvent.click(getByLabelText("open search bar"));
+    expect(getByLabelText("modal opened").textContent).toBe("true");
+    // click outer element
     fireEvent.mouseDown(getByLabelText("outer"));
-    expect(getByLabelText("opened").textContent).toBe("false");
+    expect(getByLabelText("modal opened").textContent).toBe("false");
   });
 
   test("clicking inner div should not change the value of open", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
     fireEvent.click(getByLabelText("open search bar"));
-    fireEvent.mouseDown(getByLabelText("opened"));
-    expect(getByLabelText("opened").textContent).toBe("true");
+    fireEvent.mouseDown(getByLabelText("modal opened"));
+    expect(getByLabelText("modal opened").textContent).toBe("true");
   });
 
-  test("value 'open' should be false if scrolled is true", () => {
+  test("modal should be closed if window is scrolled down", () => {
     expect.assertions(2);
     const { getByLabelText } = render(<Wrapped />);
+    // scroll up window
+    fireEvent.click(getByLabelText("scroll up"));
     // click button and open search bar
     fireEvent.click(getByLabelText("open search bar"));
-    expect(getByLabelText("opened").textContent).toBe("true");
-    // click button and scroll down
-    fireEvent.click(getByLabelText("scroll"));
-    expect(getByLabelText("opened").textContent).toBe("false");
+    expect(getByLabelText("modal opened").textContent).toBe("true");
+    // click button and scroll down window
+    fireEvent.click(getByLabelText("scroll down"));
+    expect(getByLabelText("modal opened").textContent).toBe("false");
   });
 
   test("close() should dispatch disableSearch() if value 'scrolled is true", () => {
     expect.assertions(1);
     const { getByLabelText } = render(<Wrapped />);
     // click button and scroll window
-    fireEvent.click(getByLabelText("scroll"));
+    fireEvent.click(getByLabelText("scroll down"));
     // then click close button
-    fireEvent.click(getByLabelText("close"));
-    expect(getByLabelText("search enabled").textContent).toBe("false");
+    fireEvent.click(getByLabelText("close search bar"));
+    expect(getByLabelText("search bar enabled").textContent).toBe("false");
   });
 });

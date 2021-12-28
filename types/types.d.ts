@@ -6,8 +6,8 @@ export interface WindowState {
 
 export type SelectedDate = "checkin" | "checkout";
 export type Schedule = {
-  checkIn: string;
-  checkOut: string;
+  checkIn: string | null;
+  checkOut: string | null;
 };
 export type Guests = {
   adults: number;

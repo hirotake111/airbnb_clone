@@ -1,3 +1,4 @@
+import { getEventListeners } from "events";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { changeSearchFocus, disableSearch } from "../redux/searchSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
@@ -17,7 +18,9 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
   const openSearchBar = () => {
     // update global state -> open modal
     dispatch(changeSearchFocus(type));
+    console.warn(type, "mousedwon event listener added!");
     document.addEventListener("mousedown", callback);
+    console.log("listeners:", document.onmousedown);
   };
 
   /**
@@ -28,9 +31,11 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
     const barClicked = document
       .getElementById("search_form")
       ?.contains(e.target as Node);
-    document.removeEventListener("mousedown", callback);
+    removeCallbackEvent();
     // if scrolled and search bar is not clicked, disable search menu
     if (scrolled && !barClicked) {
+      console.log("disableSearchBar()");
+      console.log("barclicked:", barClicked);
       disableSearchBar();
     }
   };
@@ -46,6 +51,7 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
    * check if clicked element is not a certain part of elements, then disable search bar
    */
   const callback = (e: MouseEvent) => {
+    console.warn("callback", type);
     // if user clicked this component, do nothing
     if (!(ref && ref.current)) return;
     // if user clicked inside of div element, do nothing
@@ -54,6 +60,9 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
     closeSearchBar(e);
   };
 
+  /**
+   * this will be invoked when window is scrolled from/to the top
+   */
   useEffect(() => {
     // if window is scrolled, then disable searchbar
     if (scrolled) {
@@ -61,10 +70,25 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
     }
   }, [scrolled]);
 
+  useEffect(() => {
+    if (!modalOpened) {
+      removeCallbackEvent();
+    }
+  }, [modalOpened]);
+
+  /**
+   * this removes mousedown callback from event listener
+   */
+  const removeCallbackEvent = () => {
+    console.warn(type, "mousedown event listener disposed!");
+    document.removeEventListener("mousedown", callback);
+  };
+
   return {
     ref,
     openSearchBar,
     closeSearchBar,
+    removeCallbackEvent,
     modalOpened,
     enabled,
   };

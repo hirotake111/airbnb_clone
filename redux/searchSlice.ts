@@ -13,8 +13,8 @@ const initialState: SearchState = {
   location: "",
   selectedDate: "checkin",
   schedule: {
-    checkIn: "",
-    checkOut: "",
+    checkIn: null,
+    checkOut: null,
   },
   guests: {
     adults: 0,

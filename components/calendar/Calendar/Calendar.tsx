@@ -1,9 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import ReactCalendar, {
-  DateCallback,
-  OnChangeDateCallback,
-  OnChangeDateRangeCallback,
-} from "react-calendar";
+import { useEffect, useMemo } from "react";
+import ReactCalendar, { DateCallback } from "react-calendar";
 import {
   changeSearchFocus,
   updateSchedule,
@@ -16,22 +12,18 @@ import ButtonsOnTop from "../ButtonsOnTop/ButtonsOnTop";
 import styles from "./Calendar.module.css";
 
 export default function Calendar() {
-  // const tomorrow = new Date();
-  // tomorrow.setDate(tomorrow.getDate() + 1);
-
-  // const [startDate, setStartDate] = useState<Date | null>(new Date());
-  // const [endDate, setEndDate] = useState<Date | null>(null);
-
   const dispatch = useAppDispatch();
   const { selectedDate, schedule } = useAppSelector((state) => state.search);
 
   const checkIn = useMemo(() => {
-    const result = new Date(schedule.checkIn);
-    return result.getTime() ? result : null;
+    // const result = new Date(schedule.checkIn);
+    // return result.getTime() ? result : null;
+    return schedule.checkIn ? new Date(schedule.checkIn) : null;
   }, [schedule.checkIn]);
   const checkOut = useMemo(() => {
-    const result = new Date(schedule.checkOut);
-    return result.getTime() ? result : null;
+    // const result = new Date(schedule.checkOut);
+    // return result.getTime() ? result : null;
+    return schedule.checkOut ? new Date(schedule.checkOut) : null;
   }, [schedule.checkOut]);
   /**
    * this depends on the value of checkIn and checkOut
@@ -58,10 +50,10 @@ export default function Calendar() {
     if (selectedDate === "checkout") {
       // if checkIn is not provided, then just update checkOut
       if (!checkIn)
-        return dispatch(updateSchedule({ checkIn: "", checkOut: result }));
+        return dispatch(updateSchedule({ checkIn: null, checkOut: result }));
       // if value is earlier than the current checkIn, then update checkIn and remove checkOut
       if (value < checkIn) {
-        return dispatch(updateSchedule({ checkIn: result, checkOut: "" }));
+        return dispatch(updateSchedule({ checkIn: result, checkOut: null }));
       }
 
       // update check out
@@ -70,7 +62,7 @@ export default function Calendar() {
     // selectedDate is checkIn
     // if value is later than checkOut, then update checkIn and remove checkOut
     if (checkOut && value > checkOut) {
-      dispatch(updateSchedule({ checkIn: result, checkOut: "" }));
+      dispatch(updateSchedule({ checkIn: result, checkOut: null }));
     } else {
       // -> update check in
       dispatch(updateSchedule({ ...schedule, checkIn: result }));
@@ -87,23 +79,14 @@ export default function Calendar() {
       </div>
       <div style={{ display: "flex" }}>
         <ReactCalendar
-          // value={
-          //   startDate ? (endDate ? [startDate, endDate] : startDate) : null
-          // }
           value={currentSchedule}
           onClickDay={handleClick}
-          // onClickDay={handleClick}
           calendarType="US"
           formatShortWeekday={formatShortWeekday}
           showDoubleView
           showNavigation={false}
         />
-        {/* <C calendarType="US" formatShortWeekday={formatShortWeekday} /> */}
       </div>
     </div>
   );
 }
-
-// react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend react-calendar__month-view__days__day--neighboringMonth
-
-// react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend

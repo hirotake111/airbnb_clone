@@ -1,5 +1,3 @@
-import { useMemo } from "react";
-
 import { useSearch } from "../../../hooks/searchHook";
 import { useOnclickOutside } from "../../../hooks/clickHook";
 
@@ -13,6 +11,7 @@ import styles from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { updateSelectedDate } from "../../../redux/searchSlice";
 import { useAppSelector } from "../../../redux/store";
+import { useSchedule } from "../../../hooks/scheduleHook";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
@@ -22,36 +21,8 @@ export default function SearchBar() {
   const guests = useOnclickOutside("guests");
 
   const dispatch = useDispatch();
-  const { schedule, focused } = useAppSelector((state) => state.search);
-
-  const searchFocused = useMemo(() => {
-    return (
-      location.modalOpened ||
-      checkIn.modalOpened ||
-      checkOut.modalOpened ||
-      guests.modalOpened
-    );
-  }, [
-    location.modalOpened,
-    checkIn.modalOpened,
-    checkOut.modalOpened,
-    guests.modalOpened,
-  ]);
-
-  const checkInDate = useMemo<string | undefined>(() => {
-    // if date is invalid date, return empty string
-    if (!new Date(schedule.checkIn).getTime()) return "";
-    const arr = schedule.checkIn.split(" ");
-    return `${arr[1]} ${arr[2]}`;
-  }, [schedule.checkIn]);
-
-  const checkOutDate = useMemo<string | undefined>(() => {
-    // if date is invalid date, return empty string
-    if (!new Date(schedule.checkOut).getTime()) return "";
-    const arr = schedule.checkOut.split(" ");
-    console.log("arr", arr);
-    return `${arr[1]} ${arr[2]}`;
-  }, [schedule.checkOut]);
+  const { checkInDate, checkOutDate } = useSchedule();
+  const { focused: searchFocused } = useAppSelector((state) => state.search);
 
   return (
     <div className={styles.container}>
@@ -92,6 +63,7 @@ export default function SearchBar() {
                   checkOut.openSearchBar();
                   dispatch(updateSelectedDate("checkout"));
                 }}
+                // value={checkOutDate}
                 value={checkOutDate}
                 focused={checkOut.modalOpened}
               />
@@ -108,7 +80,7 @@ export default function SearchBar() {
                 label="Guests"
                 placeholder="Add guests"
                 onClick={guests.openSearchBar}
-                icon={<SearchIcon size="md" searchFocused={searchFocused} />}
+                icon={<SearchIcon size="md" searchFocused={!!searchFocused} />}
                 focused={guests.modalOpened}
               />
             </div>
@@ -134,13 +106,19 @@ export default function SearchBar() {
         >
           <Location />
         </SearchModal>
-        <SearchModal opened={checkIn.modalOpened} reference={checkIn.ref}>
+        {/** checkin modal */}
+        <SearchModal
+          opened={searchFocused === "checkIn"}
+          reference={checkIn.ref}
+        >
           <Calendar />
         </SearchModal>
+        {/** checkout modal */}
         <SearchModal opened={checkOut.modalOpened} reference={checkOut.ref}>
           {/* <div>check out</div> */}
           <Calendar />
         </SearchModal>
+        {/** guests modal */}
         <SearchModal
           opened={guests.modalOpened}
           reference={guests.ref}
