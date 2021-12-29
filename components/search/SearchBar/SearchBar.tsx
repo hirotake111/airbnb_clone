@@ -1,5 +1,5 @@
 import { useSearch } from "../../../hooks/searchHook";
-import { useOnclickOutside } from "../../../hooks/clickHook";
+import { useOnclickOutside } from "../../../hooks/searchModalHook";
 
 import SearchModal from "../SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
@@ -33,13 +33,13 @@ export default function SearchBar() {
         onClick={enableSearch}
       >
         {enabled ? (
-          <div id="search_form" className={styles.search__form}>
+          <div id="search_bar" className={styles.search__form}>
             <div className={styles.search__location}>
               <SearchItem
                 label="Location"
                 placeholder="Where are you going?"
                 isTextForm
-                onClick={location.openSearchBar}
+                onClick={location.openSearchModal}
                 focused={location.modalOpened}
               />
             </div>
@@ -49,7 +49,7 @@ export default function SearchBar() {
                 label="Check in"
                 placeholder="Add dates"
                 onClick={() => {
-                  checkIn.openSearchBar();
+                  checkIn.openSearchModal();
                   dispatch(updateSelectedDate("checkin"));
                 }}
                 value={checkInDate}
@@ -60,7 +60,7 @@ export default function SearchBar() {
                 label="Check Out"
                 placeholder="Add dates"
                 onClick={() => {
-                  checkOut.openSearchBar();
+                  checkOut.openSearchModal();
                   dispatch(updateSelectedDate("checkout"));
                 }}
                 // value={checkOutDate}
@@ -79,7 +79,7 @@ export default function SearchBar() {
               <SearchItem
                 label="Guests"
                 placeholder="Add guests"
-                onClick={guests.openSearchBar}
+                onClick={guests.openSearchModal}
                 icon={<SearchIcon size="md" searchFocused={!!searchFocused} />}
                 focused={guests.modalOpened}
               />
@@ -98,7 +98,7 @@ export default function SearchBar() {
         )}
       </div>
       {/** location menu modal */}
-      <div style={{ marginTop: "12px" }}>
+      <div style={{ marginTop: "12px" }} id="search_modal">
         <SearchModal
           opened={location.modalOpened}
           reference={location.ref}

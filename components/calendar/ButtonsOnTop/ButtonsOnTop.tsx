@@ -18,7 +18,7 @@ export default function ButtonsOnTop() {
         Calendar
       </Button>
       <Button onClick={handleFlexibleClick} highlighted={!calendarHighlighted}>
-        I'm flexible
+        I&apos;m flexible
       </Button>
     </div>
   );
