@@ -3,14 +3,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import logger from "redux-logger";
 
 import { AppDispatch, RootState } from "../types/types";
-import { searchSlice } from "./searchSlice";
-import { windowSlice } from "./windowSlice";
+import { reducer } from "./reducer";
 
 export const store = configureStore({
-  reducer: {
-    window: windowSlice.reducer,
-    search: searchSlice.reducer,
-  },
+  reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

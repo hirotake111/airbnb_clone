@@ -1,5 +1,4 @@
 import { useSearch } from "../../../hooks/searchHook";
-import { useOnclickOutside } from "../../../hooks/searchModalHook";
 
 import SearchModal from "../SearchModal/SearchModal";
 import SearchIcon from "../SearchIcon/SearchIcon";
@@ -12,13 +11,14 @@ import { useDispatch } from "react-redux";
 import { updateSelectedDate } from "../../../redux/searchSlice";
 import { useAppSelector } from "../../../redux/store";
 import { useSchedule } from "../../../hooks/scheduleHook";
+import { useSearchModal } from "../../../hooks/searchModalHook";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
-  const location = useOnclickOutside("location");
-  const checkIn = useOnclickOutside("checkIn");
-  const checkOut = useOnclickOutside("checkOut");
-  const guests = useOnclickOutside("guests");
+  const location = useSearchModal("location");
+  const checkIn = useSearchModal("checkIn");
+  const checkOut = useSearchModal("checkOut");
+  const guests = useSearchModal("guests");
 
   const dispatch = useDispatch();
   const { checkInDate, checkOutDate } = useSchedule();
@@ -57,7 +57,7 @@ export default function SearchBar() {
               />
               <Divider />
               <SearchItem
-                label="Check Out"
+                label="Check out"
                 placeholder="Add dates"
                 onClick={() => {
                   checkOut.openSearchModal();

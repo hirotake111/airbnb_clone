@@ -3,12 +3,12 @@ import { changeSearchFocus, disableSearch } from "../redux/searchSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { SearchFocusedTypes } from "../types/types";
 
-export const useOnclickOutside = (type: SearchFocusedTypes) => {
+export const useSearchModal = (type: SearchFocusedTypes) => {
   const ref = useRef<HTMLDivElement>(null);
   const [eventListenerRegistered, setRegistered] = useState(false);
   const dispatch = useAppDispatch();
   const { scrolled } = useAppSelector((state) => state.window);
-  const { enabled, focused } = useAppSelector((state) => state.search);
+  const { focused } = useAppSelector((state) => state.search);
 
   const modalOpened = useMemo(() => focused === type, [focused]);
 
@@ -41,7 +41,7 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
       const node = e.target as Node;
       const bar = document.getElementById("search_bar");
       const modal = document.getElementById("search_modal");
-      console.log("callback invoked. type:", type);
+      console.log("callback invoked - type:", type);
       // if this component was clicked, do nothing
       if (ref.current?.contains(node)) return;
       // if modal was clicked, do nothing
@@ -98,6 +98,5 @@ export const useOnclickOutside = (type: SearchFocusedTypes) => {
     ref,
     openSearchModal,
     modalOpened,
-    enabled,
   };
 };

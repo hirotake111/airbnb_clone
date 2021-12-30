@@ -1,36 +1,57 @@
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store, useAppDispatch } from "../redux/store";
-import { useOnclickOutside } from "./searchModalHook";
+
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { useSearchModal } from "./searchModalHook";
 import { makeBgBlack, makeBgWhite } from "../redux/windowSlice";
+import SearchModal from "../components/search/SearchModal/SearchModal";
+import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import { reducer } from "../redux/reducer";
+
+let store: EnhancedStore;
+
+beforeEach(() => {
+  cleanup();
+  store = configureStore({ reducer });
+});
 
 const Component = () => {
-  const location = useOnclickOutside("location");
-  const guests = useOnclickOutside("location");
+  const location = useSearchModal("location");
+  const guests = useSearchModal("guests");
   const dispatch = useAppDispatch();
   const scrollDown = () => dispatch(makeBgWhite());
   const scrollUp = () => dispatch(makeBgBlack());
+  const { enabled } = useAppSelector((state) => state.search);
 
   return (
     <div id="container">
-      <button onClick={scrollDown}>scroll down</button>
-      <button onClick={scrollUp}>scroll up</button>
+      <p aria-label="container">container</p>
 
+      {/** scroll up/dwon button */}
+      <button onClick={scrollUp}>scroll up</button>
+      <button onClick={scrollDown}>scroll down</button>
+
+      {/** search bar */}
       <div id="search_bar">
+        <span aria-label="search_bar">{enabled ? "open" : "closed"}</span>
         <button onClick={location.openSearchModal}>open location modal</button>
         <button onClick={guests.openSearchModal}>open guests modal</button>
       </div>
 
+      {/** search modal */}
       <div id="search_modal">
-        <div id="location" ref={location.ref}>
-          <p id="modal_text">location modal</p>
-          <span aria-label="modal opened">
-            {location.modalOpened ? "true" : "false"}
+        <SearchModal reference={location.ref} opened={location.modalOpened}>
+          <span aria-label="location">
+            {location.modalOpened ? "open" : "closed"}
           </span>
-          <span aria-label="search bar enabled">
-            {location.enabled ? "true" : "false"}
+          {/* location modal */}
+        </SearchModal>
+        <SearchModal reference={guests.ref} opened={guests.modalOpened}>
+          <span aria-label="guests">
+            {guests.modalOpened ? "open" : "closed"}
           </span>
-        </div>
+          {/* guests modal */}
+        </SearchModal>
       </div>
     </div>
   );
@@ -44,74 +65,80 @@ const Wrapped = () => {
   );
 };
 
-let log = console.log;
-let group = console.group;
-
-beforeAll(() => {
-  cleanup();
-  console.log = jest.fn();
-  console.group = jest.fn();
-});
-
-afterAll(() => {
-  console.log = log;
-  console.group = group;
-});
-
-test("modal should be closed by default", () => {
-  expect.assertions(1);
-  const { getByLabelText } = render(<Wrapped />);
-  expect(getByLabelText("modal opened").textContent).toBe("false");
-});
-
-test("openSearchModal() should change the value of modalOpened", () => {
-  expect.assertions(1);
+test("clicking outside of modal sould close modal and search bar", () => {
+  expect.assertions(9);
   const { getByLabelText, getByText } = render(<Wrapped />);
+  // by default all modals should be closed
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
   // click button
-  fireEvent.click(getByText("open modal"));
-  expect(getByLabelText("modal opened").textContent).toBe("true");
+  fireEvent.click(getByText("open location modal"));
+  // only "location" should be open now
+  expect(getByLabelText("location").textContent).toBe("open");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // click outside of modal container
+  fireEvent.mouseDown(getByLabelText("container"));
+  // "location" should be closed now
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("closed");
 });
 
-// test("when windows is scrolled down, clicking outer div should close modal", () => {
-//   expect.assertions(2);
-//   const { getByLabelText } = render(<Wrapped />);
-//   // virtuall scroll window
-//   fireEvent.click(getByLabelText("scroll down"));
-//   // click and open search bar
-//   fireEvent.click(getByLabelText("open search bar"));
-//   expect(getByLabelText("modal opened").textContent).toBe("true");
-//   // click outer element
-//   fireEvent.mouseDown(getByLabelText("outer"));
-//   expect(getByLabelText("modal opened").textContent).toBe("false");
-// });
+test("clicking search bar should not close search bar", () => {
+  expect.assertions(9);
+  const { getByLabelText, getByText } = render(<Wrapped />);
+  // by default all modals should be closed
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // click button
+  fireEvent.click(getByText("open location modal"));
+  // only "location" should be open now
+  expect(getByLabelText("location").textContent).toBe("open");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // click outside of modal container
+  fireEvent.mouseDown(getByLabelText("search_bar"));
+  // "location" should be closed now
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+});
 
-// test("clicking inner div should not change the value of open", () => {
-//   expect.assertions(1);
-//   const { getByLabelText } = render(<Wrapped />);
-//   fireEvent.click(getByLabelText("open search bar"));
-//   fireEvent.mouseDown(getByLabelText("modal opened"));
-//   expect(getByLabelText("modal opened").textContent).toBe("true");
-// });
+test("clicking modal should not close search bar and modal", () => {
+  expect.assertions(9);
+  const { getByLabelText, getByText } = render(<Wrapped />);
+  // by default all modals should be closed
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // click button
+  fireEvent.click(getByText("open location modal"));
+  // only "location" should be open now
+  expect(getByLabelText("location").textContent).toBe("open");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // click outside of modal container
+  fireEvent.mouseDown(getByLabelText("location"));
+  // "location" should be closed now
+  expect(getByLabelText("location").textContent).toBe("open");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+});
 
-// test("modal should be closed if window is scrolled down", () => {
-//   expect.assertions(2);
-//   const { getByLabelText } = render(<Wrapped />);
-//   // scroll up window
-//   fireEvent.click(getByLabelText("scroll up"));
-//   // click button and open search bar
-//   fireEvent.click(getByLabelText("open search bar"));
-//   expect(getByLabelText("modal opened").textContent).toBe("true");
-//   // click button and scroll down window
-//   fireEvent.click(getByLabelText("scroll down"));
-//   expect(getByLabelText("modal opened").textContent).toBe("false");
-// });
-
-// test("close() should dispatch disableSearch() if value 'scrolled is true", () => {
-//   expect.assertions(1);
-//   const { getByLabelText } = render(<Wrapped />);
-//   // click button and scroll window
-//   fireEvent.click(getByLabelText("scroll down"));
-//   // then click close button
-//   fireEvent.click(getByLabelText("close search bar"));
-//   expect(getByLabelText("search bar enabled").textContent).toBe("false");
-// });
+test("scrolling down the window should close search bar and modal", () => {
+  expect.assertions(6);
+  const { getByLabelText, getByText } = render(<Wrapped />);
+  // by default all modals should be closed
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
+  // scroll down
+  fireEvent.click(getByText("scroll down"));
+  // location modal and search bar should be closed now
+  expect(getByLabelText("location").textContent).toBe("closed");
+  expect(getByLabelText("guests").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("closed");
+});
