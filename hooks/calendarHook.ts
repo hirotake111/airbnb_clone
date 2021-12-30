@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { DateCallback } from "react-calendar";
 import {
   changeSearchFocus,
@@ -26,28 +26,16 @@ export const useCalendar = () => {
   /**
    * this depends on the value of checkIn and checkOut
    */
-  const currentSchedule = useMemo(
-    () =>
-      checkInDate
-        ? checkOutDate
-          ? [checkInDate, checkOutDate]
-          : checkInDate
-        : null,
-    [checkInDate, checkOutDate]
-  );
-
-  /**
-   * debug purpose
-   */
-  // useEffect(() => {
-  //   console.log("schedule:", { checkIn, checkOut });
-  // }, [checkIn, checkOutDate]);
-  // useEffect(() => {
-  //   console.log("currentSchedule:", currentSchedule);
-  // }, [currentSchedule]);
+  const currentSchedule = useMemo(() => {
+    if (!checkInDate && !checkOutDate) return null;
+    if (checkInDate && checkOutDate) return [checkInDate, checkOutDate];
+    if (checkInDate) return checkInDate;
+    return checkOutDate;
+  }, [checkInDate, checkOutDate]);
 
   const updateScheduleFunc: DateCallback = (value, event) => {
     const result = value.toDateString();
+    // console.log("result:", result);
     if (selectedDate === "checkout") {
       // if checkIn is not provided, then just update checkOut
       if (!checkInDate)

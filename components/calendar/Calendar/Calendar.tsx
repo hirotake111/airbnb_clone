@@ -7,6 +7,7 @@ import styles from "./Calendar.module.css";
 
 export default function Calendar() {
   const { currentSchedule, updateSchedule } = useCalendar();
+  console.log("currentSchedle:", currentSchedule);
 
   const formatShortWeekday = (locale: string, date: Date): string => {
     return date.toDateString().slice(0, 2);
