@@ -24,6 +24,7 @@ export default function SearchItem({
     <>
       <div className={styles.container} onClick={onClick}>
         <div
+          aria-label="search item horizontal container"
           className={[
             styles.hContainer,
             focused ? styles.hContainer_focused : "",

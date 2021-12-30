@@ -23,3 +23,23 @@ it("should render icon if given", () => {
   );
   expect(getByLabelText("search icon").textContent).toBe("ICON");
 });
+
+it("should have hContainer_focused class if focused", () => {
+  expect.assertions(1);
+  const { getByLabelText } = render(
+    <SearchItem label="a" placeholder="b" focused />
+  );
+  expect(
+    getByLabelText("search item horizontal container").classList.contains(
+      "hContainer_focused"
+    )
+  ).toBe(true);
+});
+
+it("should display value when passed", () => {
+  expect.assertions(1);
+  const { getByLabelText } = render(
+    <SearchItem label="a" placeholder="b" value="location" />
+  );
+  expect(getByLabelText("search text").textContent).toBe("location");
+});
