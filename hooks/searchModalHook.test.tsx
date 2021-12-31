@@ -65,7 +65,7 @@ const Wrapped = () => {
   );
 };
 
-test("clicking outside of modal sould close modal and search bar", () => {
+test("clicking outside of modal sould close modal, but not search bar", () => {
   expect.assertions(9);
   const { getByLabelText, getByText } = render(<Wrapped />);
   // by default all modals should be closed
@@ -83,7 +83,7 @@ test("clicking outside of modal sould close modal and search bar", () => {
   // "location" should be closed now
   expect(getByLabelText("location").textContent).toBe("closed");
   expect(getByLabelText("guests").textContent).toBe("closed");
-  expect(getByLabelText("search_bar").textContent).toBe("closed");
+  expect(getByLabelText("search_bar").textContent).toBe("open");
 });
 
 test("clicking search bar should not close search bar", () => {

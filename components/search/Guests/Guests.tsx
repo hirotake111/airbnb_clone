@@ -1,21 +1,8 @@
 import useGuests from "../../../hooks/guestsHook";
-import { useAppSelector } from "../../../redux/store";
 import { Guest, GuestKeys } from "../../../types/types";
 import CountButton from "../../common/CountButton/CountButton";
 
 import styles from "./Guests.module.css";
-
-// const items: ItemProps[] = [
-//   { label: "Adults", description: "Ages 13 or above", count: 0 },
-//   { label: "Children", description: "Ages 2–12", count: 0 },
-//   { label: "Infants", description: "Under 2", count: 0 },
-//   {
-//     label: "Pets",
-//     description: "Bringing an assistance animal?",
-//     count: 0,
-//     link: "xxx",
-//   },
-// ];
 
 export default function Guests() {
   const { guests, updateGuestCount } = useGuests();

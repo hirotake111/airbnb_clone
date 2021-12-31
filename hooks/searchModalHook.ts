@@ -49,7 +49,7 @@ export const useSearchModal = (type: SearchFocusedTypes) => {
       // hide modal and bar
       hideSearchModal();
       // if bar was clicked, skip hiding it
-      if (bar?.contains(node)) return;
+      if (bar?.contains(node) || !scrolled) return;
       hideSearchBar();
     },
     [ref, scrolled]

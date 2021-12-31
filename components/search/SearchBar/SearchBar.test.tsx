@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 // mock components
 jest.mock("../SearchItem/SearchItem");
 jest.mock("../../calendar/Calendar/Calendar");
+jest.mock("../Guests/Guests");
 
 // mock hooks
 const mockUseSearch = jest.fn();
