@@ -9,19 +9,27 @@ export type Schedule = {
   checkIn: string | null;
   checkOut: string | null;
 };
-export type Guests = {
-  adults: number;
-  children: number;
-  infants: number;
-  pets: number;
+export type GuestKeys = "Adults" | "Children" | "Infants" | "Pets";
+export type Guest = {
+  id: number;
+  label: GuestKeys;
+  description: string;
+  link?: string;
+  count: number;
 };
+// export type Guests = {
+//   adults: Guest;
+//   children: Guest;
+//   infants: Guest;
+//   pets: Guest;
+// };
 export interface SearchState {
   enabled: boolean;
   focused: SearchFocusedTypes;
   selectedDate: SelectedDate;
   location: string;
   schedule: Schedule;
-  guests: Guests;
+  guests: Guest[];
 }
 
 export type RootState = ReturnType<typeof store.getState>;

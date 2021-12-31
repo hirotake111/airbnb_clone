@@ -1,25 +1,29 @@
+import useGuests from "../../../hooks/guestsHook";
+import { useAppSelector } from "../../../redux/store";
+import { Guest, GuestKeys } from "../../../types/types";
 import CountButton from "../../common/CountButton/CountButton";
 
 import styles from "./Guests.module.css";
 
-const items: ItemProps[] = [
-  { label: "Adults", description: "Ages 13 or above", count: 0 },
-  { label: "Children", description: "Ages 2–12", count: 0 },
-  { label: "Infants", description: "Under 2", count: 0 },
-  {
-    label: "Pets",
-    description: "Bringing an assistance animal?",
-    count: 0,
-    link: "xxx",
-  },
-];
+// const items: ItemProps[] = [
+//   { label: "Adults", description: "Ages 13 or above", count: 0 },
+//   { label: "Children", description: "Ages 2–12", count: 0 },
+//   { label: "Infants", description: "Under 2", count: 0 },
+//   {
+//     label: "Pets",
+//     description: "Bringing an assistance animal?",
+//     count: 0,
+//     link: "xxx",
+//   },
+// ];
 
 export default function Guests() {
+  const { guests, updateGuestCount } = useGuests();
   return (
     <div className={styles.guests}>
       <div aria-label="items">
-        {items.map((item) => (
-          <Item key={item.label} {...item} />
+        {guests.map((guest) => (
+          <Item key={guest.label} {...guest} updateFunc={updateGuestCount} />
         ))}
       </div>
       <div className={styles.guests__description}>
@@ -30,14 +34,11 @@ export default function Guests() {
   );
 }
 
-interface ItemProps {
-  label: string;
-  description: string;
-  link?: string;
-  count: number;
-}
+type ItemProps = Guest & {
+  updateFunc: (key: GuestKeys, count: number) => void;
+};
 
-const Item = ({ label, description, link, count }: ItemProps) => {
+const Item = ({ label, description, link, count, updateFunc }: ItemProps) => {
   return (
     <div className={styles.item}>
       <div className={styles.item__labelContainer}>
@@ -52,9 +53,9 @@ const Item = ({ label, description, link, count }: ItemProps) => {
         </span>
       </div>
       <div className={styles.item__buttons}>
-        <CountButton count={count} />
+        <CountButton count={count} onClick={() => updateFunc(label, -1)} />
         <span className={styles.item__count}>{count}</span>
-        <CountButton count={count} plus />
+        <CountButton count={count} onClick={() => updateFunc(label, 1)} plus />
       </div>
     </div>
   );

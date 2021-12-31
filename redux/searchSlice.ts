@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  Guests,
+  Guest,
   Schedule,
   SearchFocusedTypes,
   SearchState,
@@ -16,12 +16,18 @@ const initialState: SearchState = {
     checkIn: null,
     checkOut: null,
   },
-  guests: {
-    adults: 0,
-    children: 0,
-    infants: 0,
-    pets: 0,
-  },
+  guests: [
+    { id: 1, label: "Adults", description: "Ages 13 or above", count: 0 },
+    { id: 5, label: "Children", description: "Ages 2–12", count: 0 },
+    { id: 10, label: "Infants", description: "Under 2", count: 0 },
+    {
+      id: 15,
+      label: "Pets",
+      description: "Bringing an assistance animal?",
+      count: 0,
+      link: "xxx",
+    },
+  ],
 };
 
 export const searchSlice = createSlice({
@@ -46,8 +52,9 @@ export const searchSlice = createSlice({
     updateSchedule: (state, action: PayloadAction<Schedule>) => {
       state.schedule = action.payload;
     },
-    updateGuests: (state, action: PayloadAction<Guests>) => {
-      state.guests = action.payload;
+    updateGuests: (state, { payload }: PayloadAction<Guest>) => {
+      const guests = state.guests.filter((guest) => guest.id !== payload.id);
+      state.guests = [...guests, payload].sort((a, b) => a.id - b.id);
     },
   },
 });
