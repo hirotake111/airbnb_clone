@@ -44,9 +44,10 @@ export const useCalendar = () => {
       if (value < checkInDate) {
         return dispatch(updateSchedule({ checkIn: result, checkOut: null }));
       }
-
       // update check out
-      return dispatch(updateSchedule({ checkIn, checkOut: result }));
+      dispatch(updateSchedule({ checkIn, checkOut: result }));
+      // also go to guests
+      return dispatch(changeSearchFocus("guests"));
     }
     // selectedDate is checkIn
     // if value is later than checkOut, then update checkIn and remove checkOut

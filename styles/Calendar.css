@@ -37,7 +37,7 @@
 }
 .react-calendar__navigation {
   display: flex;
-  height: 44px;
+  /* height: 44px; */
   margin-bottom: 1em;
 }
 .react-calendar__navigation button {
