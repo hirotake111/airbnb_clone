@@ -12,6 +12,7 @@ import { updateSelectedDate } from "../../../redux/searchSlice";
 import { useAppSelector } from "../../../redux/store";
 import { useSchedule } from "../../../hooks/scheduleHook";
 import { useSearchModal } from "../../../hooks/searchModalHook";
+import Guests from "../Guests/Guests";
 
 export default function SearchBar() {
   const { enabled, enableSearch } = useSearch();
@@ -119,13 +120,15 @@ export default function SearchBar() {
           <Calendar />
         </SearchModal>
         {/** guests modal */}
-        <SearchModal
-          opened={guests.modalOpened}
-          reference={guests.ref}
-          width={500}
-        >
-          <div>guests</div>
-        </SearchModal>
+        <div style={{ display: "flex", justifyContent: "end" }}>
+          <SearchModal
+            opened={guests.modalOpened}
+            reference={guests.ref}
+            width={330 + 32 * 2}
+          >
+            <Guests />
+          </SearchModal>
+        </div>
       </div>
     </div>
   );

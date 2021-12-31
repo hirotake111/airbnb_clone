@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 50%;
+  padding: 5px;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  color: rgb(113, 113, 113);
+  cursor: pointer;
+}
+
+.button_disabled {
+  border: 1px solid rgb(235, 235, 235);
+  color: rgb(235, 235, 235);
+  cursor: not-allowed;
+}
+
+.button__svg {
+  display: block;
+  fill: none;
+  height: 12px;
+  width: 12px;
+  stroke: currentcolor;
+  stroke-width: 5.33333;
+  overflow: visible;
+}
