@@ -34,13 +34,17 @@ test("clicking button should invoke callback", () => {
 });
 
 it("should be disabled when button is minus and count is 0", () => {
-  expect.assertions(1);
+  expect.assertions(2);
   const { getByLabelText } = render(
     <CountButton onClick={callback} count={0} />
   );
-  expect(
-    getByLabelText("count-button").classList.contains("button_disabled")
-  ).toBe(true);
+  const button = getByLabelText("count-button");
+  // should be disabled
+  expect(button.classList.contains("button_disabled")).toBe(true);
+  // also onClick should not work
+  fireEvent.click(button);
+  fireEvent.click(button);
+  expect(callback).toHaveBeenCalledTimes(0);
 });
 
 it("should be disabled when button is pls and count is 16", () => {

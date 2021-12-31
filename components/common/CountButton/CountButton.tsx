@@ -16,7 +16,7 @@ export default function CountButton({ onClick, plus, count }: ButtonProps) {
         className={[styles.button, disabled ? styles.button_disabled : ""].join(
           " "
         )}
-        onClick={onClick}
+        onClick={disabled ? () => {} : onClick}
       >
         <svg
           viewBox="0 0 32 32"
