@@ -81,7 +81,17 @@ export default function SearchBar() {
                 label="Guests"
                 placeholder="Add guests"
                 onClick={guests.openSearchModal}
-                icon={<SearchIcon size="md" searchFocused={!!searchFocused} />}
+                icon={
+                  <SearchIcon
+                    size="md"
+                    searchFocused={!!searchFocused}
+                    onClick={() =>
+                      window.alert(
+                        "Sorry! Search feature is still in development."
+                      )
+                    }
+                  />
+                }
                 focused={guests.modalOpened}
               />
             </div>

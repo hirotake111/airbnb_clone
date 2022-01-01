@@ -35,7 +35,7 @@ const defaultData: Data = {
       locations: [
         { primary: "Phoenix", secondary: "Arizona" },
         { primary: "Hot Springs", secondary: "Arkansas" },
-        { primary: "LOs Angeles", secondary: "California" },
+        { primary: "Los Angeles", secondary: "California" },
         { primary: "San Diego", secondary: "California" },
         { primary: "San Francisco", secondary: "California" },
         { primary: "Barcelona", secondary: "Catalonia" },

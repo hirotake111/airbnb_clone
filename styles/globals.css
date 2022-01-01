@@ -26,6 +26,10 @@ abbr {
   text-decoration: none;
 }
 
+button {
+  color: #000;
+}
+
 input::placeholder {
   padding: 0;
   margin: 0;
