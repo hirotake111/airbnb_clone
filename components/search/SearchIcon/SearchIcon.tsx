@@ -9,6 +9,7 @@ interface Props {
 export default function SearchIcon({ size, searchFocused, onClick }: Props) {
   return (
     <div
+      id="search_button"
       aria-label="searchIcon"
       className={[
         styles.outlilne,

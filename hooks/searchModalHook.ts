@@ -30,6 +30,7 @@ export const useSearchModal = (type: SearchFocusedTypes) => {
   };
 
   const hideSearchModal = () => {
+    console.log("hidesarchmodal");
     dispatch(changeSearchFocus(null));
   };
 
@@ -41,11 +42,14 @@ export const useSearchModal = (type: SearchFocusedTypes) => {
       const node = e.target as Node;
       const bar = document.getElementById("search_bar");
       const modal = document.getElementById("search_modal");
+      const button = document.getElementById("search_button");
       console.log("callback invoked - type:", type);
       // if this component was clicked, do nothing
       if (ref.current?.contains(node)) return;
       // if modal was clicked, do nothing
       if (modal?.contains(node)) return;
+      // if button was clicked, do nothing
+      if (button?.contains(node)) return;
       // hide modal and bar
       hideSearchModal();
       // if bar was clicked, skip hiding it

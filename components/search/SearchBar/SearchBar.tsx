@@ -64,7 +64,6 @@ export default function SearchBar() {
                   checkOut.openSearchModal();
                   dispatch(updateSelectedDate("checkout"));
                 }}
-                // value={checkOutDate}
                 value={checkOutDate}
                 focused={checkOut.modalOpened}
               />
@@ -85,11 +84,12 @@ export default function SearchBar() {
                   <SearchIcon
                     size="md"
                     searchFocused={!!searchFocused}
-                    onClick={() =>
+                    onClick={() => {
+                      console.warn("check");
                       window.alert(
                         "Sorry! Search feature is still in development."
-                      )
-                    }
+                      );
+                    }}
                   />
                 }
                 focused={guests.modalOpened}
